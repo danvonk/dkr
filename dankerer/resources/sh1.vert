@@ -16,5 +16,6 @@ layout(std140, binding = 0) uniform mvp {
 void main() {
     Colour = colour;
     Texcoord = texCoord;
+    
     gl_Position = proj * view * vec4(position, 1.0);
 }

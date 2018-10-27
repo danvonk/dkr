@@ -2,15 +2,19 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <experimental/filesystem>
 #include <fstream>
+
 #include "glm/glm.hpp"
 
 #include "gfx/renderer.h"
 #include "gfx/vertexBuffer.h"
 #include "gfx/shader.h"
 #include "gfx/shaderProgram.h"
+#include "gfx/uniformBuffer.h"
+#include "gfx/texture.h"
 #include "gfx/mesh.h"
-#include <experimental/filesystem>
+
 
 using namespace dk::gfx;
 namespace fs = std::experimental::filesystem;
@@ -46,6 +50,21 @@ int main() {
     Mesh mesh;
     mesh.loadOBJ("dankerer/resources/teapot.obj");
 
+    Texture tex;
+    tex.loadImage("dankerer/resources/chalet.jpg");
+
+    UniformBuffer ubo;
+    struct CameraMatrix {
+        glm::mat4 model;
+        glm::mat4 view;
+        glm::mat4 proj;
+
+    } cameraMatrix;
+    cameraMatrix.proj = renderer.getCamera()->getProj();
+    cameraMatrix.view = renderer.getCamera()->getView();
+    ubo.bind((void*)&cameraMatrix, sizeof(cameraMatrix));
+    ubo.connectToShader(0);
+
 
     Shader vertex(GL_VERTEX_SHADER, "dankerer/resources/sh1.vert");
     if (!vertex.compile()) {
@@ -64,13 +83,9 @@ int main() {
         std::cerr << "Error while compiling shader program.\n";
     }
 
-
-
-
     while (!glfwWindowShouldClose(window)) {
-
         renderer.clear();
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, mesh.getVertCount());
 
         glfwSwapBuffers(window);
         glfwPollEvents();

@@ -34,7 +34,9 @@ void Mesh::loadOBJ(std::string const &fileName) {
     std::string errors;
     std::string warnings;
 
-    bool loaded = tinyobj::LoadObj(&attrib, &shapes, &materials, &warnings, &errors, fileName.c_str());
+    if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warnings, &errors, fileName.c_str())) {
+        std::cerr << "Err: Unable to load OBJ Model.\n";
+    }
 
     if (!errors.empty()) {
         std::cerr << "Err: " << errors << '\n';
@@ -46,10 +48,10 @@ void Mesh::loadOBJ(std::string const &fileName) {
     std::cout << "Info: Materials: " << materials.size() << '\n';
     std::cout << "Info: Shapes: " << shapes.size() << '\n';
 
-    std::unordered_map<Vertex, u32> uniqueVertices;
+    std::unordered_map<Vertex, u32> uniqueVertices{};
     for (const auto& shape : shapes) {
         for (const auto& index : shape.mesh.indices) {
-            Vertex v;
+            Vertex v{};
 
             v.position = glm::vec3 {
                 attrib.vertices[3 * index.vertex_index + 0],
@@ -75,10 +77,15 @@ void Mesh::loadOBJ(std::string const &fileName) {
             m_indices.push_back(uniqueVertices[v]);
         }
     }
+    m_vertCount = m_vertices.size();
     m_vbo->bind(reinterpret_cast<float *>(&m_vertices[0]), m_vertices.size() * sizeof(GLfloat));
     m_ebo->bind(reinterpret_cast<int *>(&m_indices[0]), m_indices.size() * sizeof(int));
 }
 void Mesh::use() {
+}
+
+u64 Mesh::getVertCount() {
+    return m_vertCount;
 }
 
 

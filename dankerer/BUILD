@@ -31,6 +31,8 @@ cc_binary(
         "main.cpp",
     ],
     data = [
+        "resources/chalet.jpg",
+        "resources/chalet.obj",
         "resources/mat.xml",
         "resources/sh1.frag",
         "resources/sh1.vert",
@@ -41,6 +43,7 @@ cc_binary(
     deps = [
         "//dankerer/gfx",
         "//third_party/glm",
+        "@assimp",
         "@com_google_absl//absl/strings",
         "@glew",
         "@glfw",

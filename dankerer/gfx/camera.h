@@ -12,6 +12,7 @@ namespace dk {
         class Camera {
         public:
             Camera();
+            Camera(int width, int height);
             ~Camera() = default;
 
             void mouse(int x, int y);

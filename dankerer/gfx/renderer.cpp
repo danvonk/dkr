@@ -4,10 +4,12 @@
 
 #include "renderer.h"
 #include "dankerer/gfx/renderer.h"
+#include "camera.h"
 
 
 #include <cstring>
 
+using dk::gfx::Camera;
 using dk::gfx::Renderer;
 
 Renderer::Renderer() {
@@ -55,4 +57,8 @@ int Renderer::getWindowHeight() {
 
 void Renderer::update() {
 
+}
+
+Camera* Renderer::getCamera() {
+    return nullptr;
 }

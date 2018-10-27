@@ -21,6 +21,8 @@ namespace dk {
             void setWindowHeight(int h);
             int getWindowHeight();
 
+            Camera* getCamera();
+            
             void update();
             void clear();
         private:

@@ -30,6 +30,7 @@ new_http_archive(
     urls = ["https://github.com/assimp/assimp/archive/v4.0.1.tar.gz"],
 )
 
+
 # proto_library, cc_proto_library, and java_proto_library rules implicitly
 # depend on @com_google_protobuf for protoc and proto runtimes.
 # This statement defines the @com_google_protobuf repo.

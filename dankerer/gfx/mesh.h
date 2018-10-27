@@ -18,15 +18,15 @@ namespace dk {
 
             void loadOBJ(std::string const& fileName);
             void use();
+
+            u64 getVertCount();
         private:
             std::unique_ptr<VertexBuffer> m_vbo;
             std::unique_ptr<ElementBuffer> m_ebo;
 
             std::vector<Vertex> m_vertices;
             std::vector<u32> m_indices;
-            int m_vertCount;
-
-
+            u64 m_vertCount;
         };
     }
 }

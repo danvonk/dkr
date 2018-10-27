@@ -47,3 +47,7 @@ bool dk::gfx::ShaderProgram::link() {
     glVertexAttribPointer(posAtt, 2, GL_FLOAT, GL_FALSE, 0, 0);
     return true;
 }
+
+void ShaderProgram::setUniform(GLuint bindingPoint, int value) {
+    glUniform1i(bindingPoint, value);
+}

@@ -14,6 +14,9 @@ namespace dk {
             UniformBuffer();
             ~UniformBuffer();
 
+            void bind(void* data, u32 count);
+            void connectToShader(GLuint bindingPoint);
+
         private:
             GLuint m_ubo;
         };

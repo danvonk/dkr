@@ -18,6 +18,8 @@ namespace dk {
             void addShader(Shader* shader);
             bool link();
 
+            void setUniform(GLuint bindingPoint, int value);
+
         private:
             GLuint m_shp;
 
