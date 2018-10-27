@@ -1,0 +1,9 @@
+directories:
+  dankerer
+
+targets:
+  //dankerer:main
+
+additional_languages:
+  # Uncomment any additional languages you want supported
+  # dart

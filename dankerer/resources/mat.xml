@@ -1,0 +1,4 @@
+<material name="Default Triangle">
+    <shader type="vert" source="sh1.vert"/>
+    <shader type="frag" source="sh1.frag"/>
+</material>
