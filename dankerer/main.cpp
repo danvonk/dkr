@@ -9,7 +9,7 @@
 #include "gfx/vertexBuffer.h"
 #include "gfx/shader.h"
 #include "gfx/shaderProgram.h"
-
+#include "gfx/mesh.h"
 #include <experimental/filesystem>
 
 using namespace dk::gfx;
@@ -37,18 +37,15 @@ int main() {
     glewExperimental = GL_TRUE;
     glewInit();
 
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
+    Renderer renderer;
+    renderer.setWindowWidth(640);
+    renderer.setWindowHeight(480);
 
-    GLfloat vertices[] = {
-            0.0f,  0.5f,
-            0.5f, -0.5f,
-            -0.5f, -0.5f
-    };
+    renderer.clear();
 
-    VertexBuffer vbo2;
-    vbo2.bind(vertices, sizeof(vertices));
+    Mesh mesh;
+    mesh.loadOBJ("dankerer/resources/teapot.obj");
+
 
     Shader vertex(GL_VERTEX_SHADER, "dankerer/resources/sh1.vert");
     if (!vertex.compile()) {
@@ -67,8 +64,7 @@ int main() {
         std::cerr << "Error while compiling shader program.\n";
     }
 
-    Renderer renderer;
-    renderer.clear();
+
 
 
     while (!glfwWindowShouldClose(window)) {
@@ -80,7 +76,7 @@ int main() {
         glfwPollEvents();
     }
 
-    glDeleteVertexArrays(1, &vao);
+
     glfwTerminate();
     return 0;
 }

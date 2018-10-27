@@ -12,7 +12,7 @@ namespace dk {
         class Camera {
         public:
             Camera();
-            ~Camera();
+            ~Camera() = default;
 
             void mouse(int x, int y);
             void keyDown(const int k);

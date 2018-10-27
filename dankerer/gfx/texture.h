@@ -5,6 +5,8 @@
 #ifndef DANKERER_TEXTURE_H
 #define DANKERER_TEXTURE_H
 
+#include "common.h"
+
 namespace dk {
     namespace gfx {
         class Texture {
@@ -12,6 +14,10 @@ namespace dk {
             Texture();
             ~Texture();
 
+            void loadImage(std::string const& fileName);
+
+        private:
+            GLuint m_tex;
         };
     }
 }

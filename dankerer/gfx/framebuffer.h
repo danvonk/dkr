@@ -5,6 +5,7 @@
 #ifndef DANKERER_FRAMEBUFFER_H
 #define DANKERER_FRAMEBUFFER_H
 
+#include "common.h"
 namespace dk {
     namespace gfx {
         class Framebuffer {

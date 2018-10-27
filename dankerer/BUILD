@@ -31,8 +31,11 @@ cc_binary(
         "main.cpp",
     ],
     data = [
+        "resources/mat.xml",
         "resources/sh1.frag",
         "resources/sh1.vert",
+        "resources/teapot.obj",
+        "resources/wall.jpg",
     ],
     linkopts = LINKOPT,
     deps = [

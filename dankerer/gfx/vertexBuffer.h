@@ -12,16 +12,12 @@ namespace dk {
         class VertexBuffer {
         public:
             VertexBuffer();
-            explicit VertexBuffer(std::string const& fileName);
             ~VertexBuffer();
 
-            void bind(std::string const& fileName);
-            void bind(float* vertices, u32 count);
-            void bind();
+            void bind(float* vertices, unsigned long count);
 
         private:
             GLuint m_id;
-            std::string m_fileName;
         };
     }
 }

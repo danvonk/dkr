@@ -5,6 +5,8 @@
 #ifndef DANKERER_ELEMENTBUFFER_H
 #define DANKERER_ELEMENTBUFFER_H
 
+#include "common.h"
+
 namespace dk {
     namespace gfx {
         class ElementBuffer {
@@ -12,6 +14,9 @@ namespace dk {
             ElementBuffer();
             ~ElementBuffer();
 
+            void bind(int* elements, unsigned long count);
+        private:
+            GLuint m_ebo;
         };
     }
 }

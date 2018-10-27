@@ -34,10 +34,6 @@ Camera::Camera() {
     //update();
 }
 
-Camera::~Camera() {
-
-}
-
 void Camera::update() {
     glm::quat qPitch = glm::angleAxis(glm::radians(m_pitch), glm::vec3(1.0f, 0.0f, 0.0f));
     glm::quat qYaw = glm::angleAxis(glm::radians(m_yaw), glm::vec3(0.0f, 1.0f, 0.0f));

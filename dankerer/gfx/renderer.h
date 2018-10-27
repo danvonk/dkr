@@ -6,6 +6,7 @@
 #define DANKERER_RENDERER_H
 
 #include "common.h"
+#include "camera.h"
 
 namespace dk {
     namespace gfx {
@@ -14,7 +15,25 @@ namespace dk {
             Renderer();
             ~Renderer();
 
+            void setWindowWidth(int w);
+            int getWindowWidth();
+
+            void setWindowHeight(int h);
+            int getWindowHeight();
+
+            void update();
             void clear();
+        private:
+            std::string m_deviceVendor;
+            std::string m_deviceRenderer;
+            std::string m_deviceVersion;
+
+            int m_windowWidth;
+            int m_windowHeight;
+            GLbitfield m_mask;
+
+            std::unique_ptr<Camera> m_camera;
+            GLuint m_vao;
         };
     }
 }
