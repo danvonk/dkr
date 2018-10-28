@@ -34,6 +34,7 @@ cc_binary(
         "resources/chalet.jpg",
         "resources/chalet.obj",
         "resources/mat.xml",
+        "resources/sample.png",
         "resources/sh1.frag",
         "resources/sh1.vert",
         "resources/teapot.obj",

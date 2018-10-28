@@ -21,18 +21,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c255f70-8f58-468b-aa7e-345a17b2485c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../dankerer/base/timer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dankerer/base/timer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/BUILD" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/BUILD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dankerer/base/BUILD" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/base/BUILD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dankerer/base/tiny_obj_loader.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/BUILD" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/BUILD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/camera.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/common.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/common.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/mesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/mesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/mesh.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/renderer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/renderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shader.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/gfx/texture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/texture.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/resources/sh1.frag" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/resources/sh1.frag" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../dankerer/resources/sh1.vert" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/resources/sh1.vert" afterDir="false" />
@@ -43,26 +50,42 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1645241475">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="BUILD" value="21" />
+          <entry key="BUILD" value="25" />
           <entry key="bazel" value="2" />
           <entry key="bazelproject" value="1" />
-          <entry key="cpp" value="45" />
-          <entry key="h" value="54" />
+          <entry key="cpp" value="54" />
+          <entry key="h" value="60" />
+          <entry key="inl" value="1" />
           <entry key="jpg" value="1" />
           <entry key="obj" value="1" />
           <entry key="xml" value="1" />
@@ -70,9 +93,9 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="BUILD" value="23" />
+          <entry key="BUILD" value="27" />
           <entry key="Image" value="1" />
-          <entry key="ObjectiveC" value="99" />
+          <entry key="ObjectiveC" value="115" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="1" />
           <entry key="projectview" value="1" />
@@ -80,47 +103,29 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="BUILD" value="757" />
+          <entry key="BUILD" value="802" />
           <entry key="GDB" value="57" />
-          <entry key="cpp" value="9798" />
-          <entry key="h" value="3137" />
+          <entry key="cpp" value="14240" />
+          <entry key="h" value="3637" />
           <entry key="mm" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="BUILD" value="757" />
+          <entry key="BUILD" value="802" />
           <entry key="GDBCommands" value="57" />
-          <entry key="ObjectiveC" value="12947" />
+          <entry key="ObjectiveC" value="17889" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/BUILD">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-178">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/camera.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../dankerer/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+            <state relative-caret-position="131">
+              <caret line="74" column="25" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -129,10 +134,82 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/renderer.cpp">
+        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/texture.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="30" column="85" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="85" />
+              <folding>
+                <element signature="e#93#129#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shader.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="64" column="24" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shader.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+              <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
+              <folding>
+                <element signature="e#105#124#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dankerer/BUILD">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="51" column="43" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="43" />
+              <folding>
+                <element signature="e#38#64#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/renderer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-85">
+              <caret line="39" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="38" />
               <folding>
                 <element signature="e#38#59#0" expanded="true" />
               </folding>
@@ -141,67 +218,14 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/mesh.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
-              <folding>
-                <element signature="e#87#106#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../dankerer/BUILD">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../dankerer/gfx/mesh.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+            <state relative-caret-position="797">
+              <caret line="51" column="52" lean-forward="true" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
               <folding>
                 <element signature="e#38#55#0" expanded="true" />
+                <element signature="e#144#171#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/elementBuffer.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="e#38#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
-              <caret line="51" column="37" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
-              <folding>
-                <element signature="e#38#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -214,32 +238,33 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../dankerer/gfx/shader.h" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/shader.cpp" />
-        <option value="$PROJECT_DIR$/../dankerer/base/BUILD" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.h" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.cpp" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/common.h" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/elementBuffer.h" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/elementBuffer.cpp" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/BUILD" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/framebuffer.h" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/texture.h" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/material.h" />
         <option value="$PROJECT_DIR$/../dankerer/ui/BUILD" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/texture.cpp" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.h" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/renderer.h" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/camera.cpp" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.cpp" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/mesh.h" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/BUILD" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/common.h" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/camera.cpp" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/camera.h" />
-        <option value="$PROJECT_DIR$/../dankerer/gfx/renderer.cpp" />
-        <option value="$PROJECT_DIR$/../dankerer/main.cpp" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/renderer.h" />
+        <option value="$PROJECT_DIR$/../dankerer/base/timer.h" />
+        <option value="$PROJECT_DIR$/../dankerer/base/BUILD" />
         <option value="$PROJECT_DIR$/../dankerer/gfx/mesh.cpp" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.cpp" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/shader.h" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/shader.cpp" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/renderer.cpp" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp" />
+        <option value="$PROJECT_DIR$/../dankerer/gfx/texture.cpp" />
         <option value="$PROJECT_DIR$/../dankerer/BUILD" />
+        <option value="$PROJECT_DIR$/../dankerer/main.cpp" />
       </list>
     </option>
   </component>
@@ -250,9 +275,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="854" />
+    <option name="x" value="491" />
     <option name="y" value="27" />
-    <option name="width" value="1066" />
+    <option name="width" value="1429" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -347,38 +372,40 @@
       <workItem from="1540493191807" duration="3995000" />
       <workItem from="1540544304823" duration="2137000" />
       <workItem from="1540546493930" duration="8222000" />
-      <workItem from="1540627827983" duration="22302000" />
+      <workItem from="1540627827983" duration="26118000" />
+      <workItem from="1540711610595" duration="5683000" />
+      <workItem from="1540728050098" duration="7041000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40488000" />
+    <option name="totallyTimeSpent" value="57028000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="491" y="27" width="1429" height="1053" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1292735" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13902968" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.62286323" visible="true" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49579832" weight="0.35969663" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.40474427" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48877624" visible="true" weight="0.30877572" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Blaze Console" order="9" sideWeight="0.37713677" side_tool="true" visible="true" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Blaze Console" order="9" sideWeight="0.51122373" side_tool="true" visible="true" weight="0.30877572" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49962935" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Blaze Problems" order="12" sideWeight="0.49839744" weight="0.32936078" />
+      <window_info anchor="bottom" id="Blaze Problems" order="12" sideWeight="0.49793217" weight="0.32936078" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="LuaJ" order="4" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3298611" />
+      <window_info anchor="right" id="LuaJ" order="4" weight="0.3298611" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,13 +451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/base/stb_image.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -451,33 +471,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/base/tiny_obj_loader.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="47" selection-start-line="47" selection-end-line="47" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/common.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#91#109#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#38#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/base/tiny_obj_loader.h" />
     <entry file="file://$PROJECT_DIR$/../dankerer/gfx/material.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -495,57 +489,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/base/BUILD">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shader.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-          <folding>
-            <element signature="e#38#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="51" lean-forward="true" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/renderer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-          <folding>
-            <element signature="e#95#114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/camera.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-304">
-          <caret line="40" column="39" lean-forward="true" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
-          <folding>
-            <element signature="e#38#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/texture.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="97" selection-start-line="30" selection-start-column="97" selection-end-line="30" selection-end-column="97" />
-          <folding>
-            <element signature="e#93#129#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -576,37 +523,44 @@
     <entry file="file://$PROJECT_DIR$/../dankerer/resources/chalet.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#38#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/gfx/mesh.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
-          <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding>
             <element signature="e#87#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h">
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/BUILD">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="58" lean-forward="true" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+        <state relative-caret-position="630">
+          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp">
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/common.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="51" column="37" selection-start-line="51" selection-start-column="37" selection-end-line="51" selection-end-column="37" />
+        <state relative-caret-position="630">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding>
+            <element signature="e#91#109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.cache/bazel/_bazel_dan/578bdfdde8409d893b77f818f43021e7/external/assimp/include/assimp/vector3.inl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="183" column="76" lean-forward="true" selection-start-line="183" selection-start-column="76" selection-end-line="183" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/elementBuffer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
           <folding>
             <element signature="e#38#64#0" expanded="true" />
           </folding>
@@ -615,62 +569,144 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/gfx/camera.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+        <state relative-caret-position="450">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/renderer.cpp">
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/camera.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="1926">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
           <folding>
-            <element signature="e#38#59#0" expanded="true" />
+            <element signature="e#38#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/elementBuffer.cpp">
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/uniformBuffer.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="270">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
           <folding>
             <element signature="e#38#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/main.cpp">
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/renderer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+        <state relative-caret-position="576">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#95#114#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/base/timer.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/base/timer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/base/BUILD">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/gfx/mesh.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="68" selection-end-column="26" />
+        <state relative-caret-position="797">
+          <caret line="51" column="52" lean-forward="true" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
           <folding>
             <element signature="e#38#55#0" expanded="true" />
+            <element signature="e#144#171#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/BUILD">
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-178">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="455">
+          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
+          <folding>
+            <element signature="e#105#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shader.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="64" column="24" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/renderer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="39" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="38" />
+          <folding>
+            <element signature="e#38#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/vertexBuffer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="51" column="43" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="43" />
+          <folding>
+            <element signature="e#38#64#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/BUILD">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        <state relative-caret-position="400">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/texture.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="30" column="85" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="85" />
+          <folding>
+            <element signature="e#93#129#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="74" column="25" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -13,6 +13,7 @@ namespace dk {
         class Renderer {
         public:
             Renderer();
+            Renderer(int width, int height);
             ~Renderer();
 
             void setWindowWidth(int w);
@@ -30,8 +31,8 @@ namespace dk {
             std::string m_deviceRenderer;
             std::string m_deviceVersion;
 
-            int m_windowWidth;
-            int m_windowHeight;
+            int m_windowWidth = 640;
+            int m_windowHeight = 480;
             GLbitfield m_mask;
 
             std::unique_ptr<Camera> m_camera;

@@ -23,20 +23,26 @@ Renderer::Renderer() {
     m_deviceVersion = std::string((const char *) deviceVersion, std::strlen((const char *) deviceVersion));
 
     m_mask = GL_COLOR_BUFFER_BIT;
-    m_camera = std::make_unique<Camera>();
+    m_camera = std::make_unique<Camera>(m_windowWidth, m_windowHeight);
 
+}
 
-    glGenVertexArrays(1, &m_vao);
-    glBindVertexArray(m_vao);
+Renderer::Renderer(int width, int height)
+: Renderer()
+{
+    m_windowWidth = width;
+    m_windowHeight = height;
+    m_camera->setWindowWidth(width);
+    m_camera->setWindowHeight(height);
 }
 
 Renderer::~Renderer() {
-    glDeleteVertexArrays(1, &m_vao);
+//    glDeleteVertexArrays(1, &m_vao);
 }
 
 void Renderer::clear() {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(m_mask);
+    glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Renderer::setWindowWidth(int w) {
@@ -60,5 +66,5 @@ void Renderer::update() {
 }
 
 Camera* Renderer::getCamera() {
-    return nullptr;
+    return m_camera.get();
 }

@@ -18,6 +18,7 @@ namespace dk {
 
             bool compile(std::string const &fileName);
             bool compile();
+            bool isCompiled();
         private:
             auto getShaderType() {
                 return m_shaderType;
@@ -27,6 +28,7 @@ namespace dk {
                 return m_shader;
             }
 
+            bool m_isCompiled;
             std::string m_fileName;
             GLuint m_shader;
             GLenum m_shaderType;

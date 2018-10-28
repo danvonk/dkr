@@ -12,6 +12,7 @@
 using dk::gfx::Shader;
 
 Shader::Shader(GLenum shaderType, std::string const &fileName) {
+    m_isCompiled = false;
     m_shader = glCreateShader(shaderType);
     m_fileName = fileName;
     m_shaderType = shaderType;
@@ -47,6 +48,7 @@ bool Shader::compile(std::string const &fileName) {
         printf(&errorLog[0]);
         return false;
     }
+    m_isCompiled = true;
     return true;
 }
 
@@ -57,4 +59,8 @@ bool Shader::compile() {
     }
     return false;
 
+}
+
+bool Shader::isCompiled() {
+    return m_isCompiled;
 }

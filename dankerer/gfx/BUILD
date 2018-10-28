@@ -33,5 +33,6 @@ cc_library(
     ],
     deps = [
         "//dankerer/base",
+        "@assimp",
     ],
 )

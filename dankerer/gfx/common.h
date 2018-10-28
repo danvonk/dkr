@@ -29,9 +29,11 @@ using i64 = int64_t;
 //default vertex structure
 //TODO: Let the material.xml file define this...
 struct Vertex {
-    bool operator==(const Vertex& other) const {
-        return position == other.position && normal == other.normal && texCoord == other.texCoord;
-    }
+    Vertex()
+    : position(glm::vec3())
+    , normal(glm::vec3())
+    , texCoord(glm::vec2())
+    {}
 
     glm::vec3 position;
     glm::vec3 normal;

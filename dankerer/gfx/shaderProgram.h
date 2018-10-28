@@ -6,6 +6,8 @@
 #define DANKERER_SHADERPROGRAM_H
 
 #include "common.h"
+#include "dankerer/gfx/shader.h"
+
 
 namespace dk {
     namespace gfx {
@@ -19,6 +21,9 @@ namespace dk {
             bool link();
 
             void setUniform(GLuint bindingPoint, int value);
+            GLuint getID() {
+                return m_shp;
+            }
 
         private:
             GLuint m_shp;

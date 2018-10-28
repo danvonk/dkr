@@ -16,31 +16,19 @@ namespace dk {
             ~Camera() = default;
 
             void mouse(int x, int y);
-            void keyDown(const int k);
+            void keyDown(int k);
 
             void setPosition(const glm::vec3& pos);
 
             void update();
 
-            auto getProj() {
-                return m_proj;
-            }
+            glm::mat4 getProj();
+            glm::mat4 getView();
 
-            auto getView() {
-                return m_view;
-            }
-
-            auto getWindowHeight() {
-                return m_windowHeight;
-            }
-
-            auto getWindowWidth() {
-                return m_windowWidth;
-            }
-
-            auto getPosition() {
-                return m_position;
-            }
+            void setWindowHeight(int h);
+            int getWindowHeight();
+            void setWindowWidth(int w);
+            int getWindowWidth();
 
         private:
             int m_windowHeight;

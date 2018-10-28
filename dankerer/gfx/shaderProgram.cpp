@@ -26,7 +26,7 @@ void ShaderProgram::addShader(Shader *shader) {
 }
 
 bool dk::gfx::ShaderProgram::link() {
-    glBindFragDataLocation(m_shp, 0, "outColour"); //TODO: remove...
+//    glBindFragDataLocation(m_shp, 0, "outColour"); //TODO: remove...
     glLinkProgram(m_shp);
     glUseProgram(m_shp);
 
@@ -42,9 +42,20 @@ bool dk::gfx::ShaderProgram::link() {
         return false;
     }
 
-    GLint posAtt = glGetAttribLocation(m_shp, "position");
-    glEnableVertexAttribArray(posAtt);
-    glVertexAttribPointer(posAtt, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    auto pos = glGetAttribLocation(m_shp, "position");
+    glEnableVertexAttribArray(pos);
+    std::cout << "Val is " << pos << "\n";
+    glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), nullptr);
+    auto norm = glGetAttribLocation(m_shp, "colour");
+    std::cout << "Val is " << norm << "\n";
+    glEnableVertexAttribArray(norm);
+    glVertexAttribPointer(norm, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+    auto texc = glGetAttribLocation(m_shp, "texCoord");
+    std::cout << "Val is " << texc << "\n";
+    glEnableVertexAttribArray(texc);
+    glVertexAttribPointer(texc, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
+
+    glUniform1i(glGetUniformLocation(m_shp, "tex"), 0);
     return true;
 }
 

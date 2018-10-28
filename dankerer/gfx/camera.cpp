@@ -3,6 +3,8 @@
 //
 
 #include "camera.h"
+#include "dankerer/gfx/camera.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/glm.hpp>
@@ -100,4 +102,28 @@ void Camera::keyDown(const int k) {
 
 void Camera::setPosition(const glm::vec3 &pos) {
     m_position = pos;
+}
+
+glm::mat4 Camera::getProj() {
+    return m_proj;
+}
+
+glm::mat4 Camera::getView() {
+    return m_view;
+}
+
+void Camera::setWindowHeight(int h) {
+    m_windowHeight = h;
+}
+
+int Camera::getWindowWidth() {
+    return m_windowWidth;
+}
+
+int Camera::getWindowHeight() {
+    return m_windowHeight;
+}
+
+void Camera::setWindowWidth(int w) {
+    m_windowWidth = w;
 }

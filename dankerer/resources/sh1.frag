@@ -1,11 +1,12 @@
 #version 450
 
-layout(location = 3) in vec3 Colour;
-layout(location = 4) in vec2 Texcoord;
-layout(location = 5) out vec3 outColour;
+in vec3 Colour;
+in vec2 Texcoord;
 
-layout(binding = 1) uniform sampler2D tex;
+out vec4 outColour;
+
+uniform sampler2D tex;
 
 void main() {
-    outColour = texture(tex, Texcoord);
+    outColour = vec4(Colour, 1.0) * texture(tex, Texcoord);
 }
