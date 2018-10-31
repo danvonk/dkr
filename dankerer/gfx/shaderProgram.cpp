@@ -4,7 +4,6 @@
 
 #include "shaderProgram.h"
 #include "shader.h"
-#include "dankerer/gfx/shaderProgram.h"
 
 
 using dk::gfx::ShaderProgram;

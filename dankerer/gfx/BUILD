@@ -4,6 +4,7 @@ cc_library(
     name = "gfx",
     srcs = [
         "camera.cpp",
+        "commandBuffer.cpp",
         "elementBuffer.cpp",
         "framebuffer.cpp",
         "material.cpp",
@@ -15,9 +16,11 @@ cc_library(
         "uniformBuffer.cpp",
         "vertexArrayConfig.cpp",
         "vertexBuffer.cpp",
+        "window.cpp",
     ],
     hdrs = [
         "camera.h",
+        "commandBuffer.h",
         "common.h",
         "elementBuffer.h",
         "framebuffer.h",
@@ -30,6 +33,7 @@ cc_library(
         "uniformBuffer.h",
         "vertexArrayConfig.h",
         "vertexBuffer.h",
+        "window.h",
     ],
     deps = [
         "//dankerer/base",

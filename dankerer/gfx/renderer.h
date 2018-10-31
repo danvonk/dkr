@@ -7,12 +7,12 @@
 
 #include "common.h"
 #include "camera.h"
+#include <GLFW/glfw3.h>
 
 namespace dk {
     namespace gfx {
         class Renderer {
         public:
-            Renderer();
             Renderer(int width, int height);
             ~Renderer();
 
@@ -22,21 +22,17 @@ namespace dk {
             void setWindowHeight(int h);
             int getWindowHeight();
 
-            Camera* getCamera();
-            
-            void update();
+            void executeCommandBuffer();
             void clear();
         private:
             std::string m_deviceVendor;
             std::string m_deviceRenderer;
             std::string m_deviceVersion;
 
-            int m_windowWidth = 640;
-            int m_windowHeight = 480;
+            int m_windowWidth;
+            int m_windowHeight;
             GLbitfield m_mask;
 
-            std::unique_ptr<Camera> m_camera;
-            GLuint m_vao;
         };
     }
 }

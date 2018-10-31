@@ -9,6 +9,11 @@
 
 namespace dk {
     namespace gfx {
+        struct CameraMatrix {
+            glm::mat4 view;
+            glm::mat4 proj;
+
+        };
         class Camera {
         public:
             Camera();
@@ -16,7 +21,12 @@ namespace dk {
             ~Camera() = default;
 
             void mouse(int x, int y);
-            void keyDown(int k);
+
+            void forward();
+            void backward();
+            void left();
+            void right();
+
 
             void setPosition(const glm::vec3& pos);
 
@@ -31,26 +41,24 @@ namespace dk {
             int getWindowWidth();
 
         private:
-            int m_windowHeight;
-            int m_windowWidth;
-
-            float m_aspect;
-            float m_fov;
-            float m_nearClip;
-            float m_farClip;
-
             glm::vec3 m_position;
+            glm::vec3 m_front;
             glm::vec3 m_up;
-            glm::vec3 m_target;
+            glm::vec3 m_right;
+            glm::vec3 m_worldUp;
 
-            glm::mat4 m_proj;
             glm::mat4 m_view;
+            glm::mat4 m_proj;
 
-            glm::vec2 m_mousePosition;
-
-            float m_pitch;
-            float m_roll;
             float m_yaw;
+            float m_pitch;
+
+            float m_mouseSensitivity;
+            float m_movementSpeed;
+            float m_zoom;
+
+            int m_windowWidth;
+            int m_windowHeight;
         };
     }
 }

@@ -3,7 +3,6 @@
 //
 
 #include "mesh.h"
-#include "dankerer/gfx/mesh.h"
 #include <unordered_map>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>
@@ -58,8 +57,8 @@ void Mesh::loadOBJ(std::string const &fileName) {
     }
     std::cout << "Info: Loaded Model with " << pScene->mMeshes[0]->mNumVertices << " verts.\n";
     m_vertCount = m_vertices.size();
-    m_vbo->bind(reinterpret_cast<float *>(&m_vertices[0]), m_vertices.size() * sizeof(GLfloat));
     m_ebo->bind(reinterpret_cast<int *>(&m_indices[0]), m_indices.size() * sizeof(int));
+    m_vbo->bind(reinterpret_cast<float *>(&m_vertices[0]), m_vertices.size() * sizeof(GLfloat));
 }
 
 void Mesh::use() {

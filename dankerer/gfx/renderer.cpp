@@ -3,7 +3,6 @@
 //
 
 #include "renderer.h"
-#include "dankerer/gfx/renderer.h"
 #include "camera.h"
 
 
@@ -12,7 +11,11 @@
 using dk::gfx::Camera;
 using dk::gfx::Renderer;
 
-Renderer::Renderer() {
+Renderer::Renderer(int width, int height)
+{
+    m_windowWidth = width;
+    m_windowHeight = height;
+
     const GLubyte *vendorString = glGetString(GL_VENDOR);
     auto deviceRenderer = glGetString(GL_RENDERER);
     auto deviceVersion = glGetString(GL_VERSION);
@@ -23,21 +26,9 @@ Renderer::Renderer() {
     m_deviceVersion = std::string((const char *) deviceVersion, std::strlen((const char *) deviceVersion));
 
     m_mask = GL_COLOR_BUFFER_BIT;
-    m_camera = std::make_unique<Camera>(m_windowWidth, m_windowHeight);
-
-}
-
-Renderer::Renderer(int width, int height)
-: Renderer()
-{
-    m_windowWidth = width;
-    m_windowHeight = height;
-    m_camera->setWindowWidth(width);
-    m_camera->setWindowHeight(height);
 }
 
 Renderer::~Renderer() {
-//    glDeleteVertexArrays(1, &m_vao);
 }
 
 void Renderer::clear() {
@@ -59,12 +50,4 @@ void Renderer::setWindowHeight(int h) {
 
 int Renderer::getWindowHeight() {
     return m_windowHeight;
-}
-
-void Renderer::update() {
-
-}
-
-Camera* Renderer::getCamera() {
-    return m_camera.get();
 }

@@ -3,7 +3,6 @@
 //
 
 #include "elementBuffer.h"
-#include "dankerer/gfx/elementBuffer.h"
 
 
 using dk::gfx::ElementBuffer;

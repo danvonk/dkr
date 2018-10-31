@@ -1,28 +1,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
-#include <iostream>
 #include <experimental/filesystem>
-#include <fstream>
+#include "absl/strings/str_cat.h"
 
-#include "glm/glm.hpp"
-
-#include "gfx/renderer.h"
-#include "gfx/vertexBuffer.h"
-#include "gfx/shader.h"
-#include "gfx/shaderProgram.h"
-#include "gfx/uniformBuffer.h"
-#include "gfx/texture.h"
-#include "gfx/mesh.h"
-
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/quaternion.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
+#include "gfx/window.h"
 
 using namespace dk::gfx;
 namespace fs = std::experimental::filesystem;
+namespace chr = std::chrono;
 
 void errorCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
     std::cout << "OpenGL Error: " << message << '\n';
@@ -61,70 +46,38 @@ int main() {
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, &unusedIds, GL_TRUE);
 #endif
 
-//    Renderer renderer(800, 600);
-//    renderer.clear();
+    Window gameWindow(window, 800, 600);
 
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
+    glfwSetWindowUserPointer(window, (void*)&gameWindow);
 
-//    Mesh mesh;
-//    mesh.loadOBJ("dankerer/resources/chalet.obj");
-    VertexBuffer vbo;
-    vbo.bind(nullptr, 0);
+    auto keybFunc = [](GLFWwindow* window, int key, int scanCode, int actions, int mods) {
+        static_cast<Window*>(glfwGetWindowUserPointer(window))->handleKeyboard(window, key, scanCode, actions, mods);
+    };
 
-    Texture tex;
-    tex.loadImage("dankerer/resources/sample.png");
+    auto mouseFunc = [](GLFWwindow* window, double xpos, double ypos) {
+        static_cast<Window*>(glfwGetWindowUserPointer(window))->handleMouse(window, xpos, ypos);
+    };
 
-//    UniformBuffer ubo;
-    struct CameraMatrix {
-        glm::mat4 view;
-        glm::mat4 proj;
+    glfwSetKeyCallback(window, keybFunc);
+    glfwSetCursorPosCallback(window, mouseFunc);
 
-    } cameraMatrix;
+    auto currentTime = chr::high_resolution_clock::now();
+    using ms = chr::milliseconds;
 
-    glm::mat4 proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 1.0f, 10.0f);
-    glm::mat4 view = glm::lookAt(
-            glm::vec3(2.5f, 2.5f, 2.0f),
-            glm::vec3(0.0f, 0.0f, 0.0f),
-            glm::vec3(0.0f, 0.0f, 1.0f)
-    );
-
-//    ubo.bind((void*)&cameraMatrix, sizeof(cameraMatrix));
-//    ubo.connectToShader(0);
-
-
-    Shader vertex(GL_VERTEX_SHADER, "dankerer/resources/sh1.vert");
-    if (!vertex.compile()) {
-        std::cerr << "Error while compiling vertex shader.\n";
-    }
-
-    Shader fragment(GL_FRAGMENT_SHADER, "dankerer/resources/sh1.frag");
-    if (!fragment.compile()) {
-        std::cerr << "Error while compiling frag shader.\n";
-    }
-
-    ShaderProgram shp;
-    shp.addShader(&vertex);
-    shp.addShader(&fragment);
-
-    if (!shp.link()) {
-        std::cerr << "Error while compiling shader program.\n";
-    }
-
-    auto uView = glGetUniformLocation(shp.getID(), "view");
-    auto uProj = glGetUniformLocation(shp.getID(), "proj");
-
-    glUniformMatrix4fv(uView, 1, GL_FALSE, glm::value_ptr(view));
-    glUniformMatrix4fv(uProj, 1, GL_FALSE, glm::value_ptr(proj));
+    gameWindow.init();
 
     while (!glfwWindowShouldClose(window)) {
-        glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        auto newTime = std::chrono::high_resolution_clock::now();
+        auto frameTime = newTime - currentTime;
+        currentTime = newTime;
+
+        gameWindow.update(chr::duration_cast<ms>(frameTime).count());
+        gameWindow.setTitle(absl::StrCat("DanVonkRenderer @ ", ((float) 1/ (float) chr::duration_cast<ms>(frameTime).count()) * 1000.0f, " fps, "));
+
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         GLenum err;
-        while ((err = glGetError() != GL_NO_ERROR)) {
+        while ((err = static_cast<GLenum>(glGetError() != GL_NO_ERROR))) {
             std::cerr << "glGetError() returns: " << err << '\n';
         }
 

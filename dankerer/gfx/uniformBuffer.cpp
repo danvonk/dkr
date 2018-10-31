@@ -3,13 +3,12 @@
 //
 
 #include "uniformBuffer.h"
-#include "dankerer/gfx/uniformBuffer.h"
 
 
 using dk::gfx::UniformBuffer;
 
 UniformBuffer::UniformBuffer() {
-    glGenBuffers(1, &m_ubo);
+    glCreateBuffers(1, &m_ubo);
 }
 
 UniformBuffer::~UniformBuffer() {
@@ -17,8 +16,8 @@ UniformBuffer::~UniformBuffer() {
 }
 
 void UniformBuffer::bind(void *data, u32 count) {
+    glNamedBufferData(m_ubo, count, data, GL_STATIC_DRAW);
     glBindBuffer(GL_UNIFORM_BUFFER, m_ubo);
-    glBufferData(GL_UNIFORM_BUFFER, count, data, GL_STATIC_DRAW);
 }
 
 void UniformBuffer::connectToShader(GLuint bindingPoint) {

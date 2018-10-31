@@ -7,12 +7,10 @@ in vec2 texCoord;
 out vec3 Colour;
 out vec2 Texcoord;
 
-// layout(std140, binding = 0) uniform mvp {
-//     mat4 view;
-//     mat4 proj;
-// };
-uniform mat4 view;
-uniform mat4 proj;
+layout(std140, binding = 0) uniform mvp {
+    mat4 view;
+    mat4 proj;
+};
 
 void main() {
     Colour = colour;

@@ -3,7 +3,6 @@
 //
 
 #include "shader.h"
-#include "dankerer/gfx/shader.h"
 
 #include <fstream>
 #include <sstream>

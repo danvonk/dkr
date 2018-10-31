@@ -6,8 +6,6 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "dankerer/base/stb_image.h"
-#include "dankerer/gfx/texture.h"
-
 
 using dk::gfx::Texture;
 
