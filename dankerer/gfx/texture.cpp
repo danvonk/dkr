@@ -7,6 +7,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "dankerer/base/stb_image.h"
 
+
 using dk::gfx::Texture;
 
 Texture::Texture() {
@@ -27,4 +28,12 @@ void Texture::loadImage(std::string const &fileName) {
 
     stbi_uc* pixels = stbi_load(fileName.c_str(), &width, &height, &channels, STBI_rgb);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixels);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
+
+void Texture::loadImage(std::string const &fileName, TextureType tt) {
+    m_ttype = tt;
+    loadImage(fileName);
 }

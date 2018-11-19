@@ -30,21 +30,13 @@ cc_binary(
     srcs = [
         "main.cpp",
     ],
-    data = [
-        "resources/chalet.jpg",
-        "resources/chalet.obj",
-        "resources/mat.xml",
-        "resources/sample.png",
-        "resources/sh1.frag",
-        "resources/sh1.vert",
-        "resources/teapot.obj",
-        "resources/wall.jpg",
-    ],
+    data = glob(["resources/**"]),
     linkopts = LINKOPT,
     deps = [
         "//dankerer/gfx",
         "//third_party/glm",
         "@assimp",
+        "@com_google_absl//absl/container:flat_hash_map",
         "@com_google_absl//absl/strings",
         "@glew",
         "@glfw",

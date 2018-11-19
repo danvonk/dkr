@@ -9,6 +9,7 @@ cc_library(
     hdrs = [
         "stb_image.h",
         "timer.h",
+        "short_alloc.h",
         "tinyxml2.h",
     ],
 )

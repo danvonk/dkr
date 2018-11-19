@@ -26,6 +26,22 @@ using i16 = int16_t;
 using i32 = int32_t;
 using i64 = int64_t;
 
+template <typename T, u32 n, u32 m>
+struct GenericHandle {
+    T m_index : n;
+    T m_generation : m;
+};
+
+using VertexBufferHandle = GenericHandle<u32, 12, 20>;
+using ElementBufferHandle = GenericHandle<u32, 12, 20>;
+using UniformBufferHandle = GenericHandle<u32, 12, 20>;
+using ShaderHandle = GenericHandle<u32, 12, 20>;
+using ShaderProgramHandle = GenericHandle<u32, 12, 20>;
+using FramebufferHandle = GenericHandle<u32, 12, 20>;
+using TextureHandle = GenericHandle<u32, 12, 20>;
+using MaterialHandle = GenericHandle<u32, 12, 20>;
+
+
 //default vertex structure
 //TODO: Let the material.xml file define this...
 struct Vertex {

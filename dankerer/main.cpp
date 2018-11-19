@@ -25,10 +25,9 @@ int main() {
 #ifndef NDEBUG
     std::cout << "Running in debug mode!\n";
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
-
 #endif
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "DanVonkRenderer", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Renderer", nullptr, nullptr);
     if (!window) {
         std::cerr << "Could not open window\n";
         glfwTerminate();
@@ -46,10 +45,13 @@ int main() {
     glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, &unusedIds, GL_TRUE);
 #endif
 
+    glEnable(GL_DEPTH_TEST);
+    glfwWindowHint(GLFW_DEPTH_BITS, 24);
+    glfwWindowHint(GLFW_STENCIL_BITS, 8);
+
     Window gameWindow(window, 800, 600);
 
     glfwSetWindowUserPointer(window, (void*)&gameWindow);
-
     auto keybFunc = [](GLFWwindow* window, int key, int scanCode, int actions, int mods) {
         static_cast<Window*>(glfwGetWindowUserPointer(window))->handleKeyboard(window, key, scanCode, actions, mods);
     };
@@ -58,6 +60,7 @@ int main() {
         static_cast<Window*>(glfwGetWindowUserPointer(window))->handleMouse(window, xpos, ypos);
     };
 
+//    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwSetKeyCallback(window, keybFunc);
     glfwSetCursorPosCallback(window, mouseFunc);
 
@@ -73,8 +76,6 @@ int main() {
 
         gameWindow.update(chr::duration_cast<ms>(frameTime).count());
         gameWindow.setTitle(absl::StrCat("DanVonkRenderer @ ", ((float) 1/ (float) chr::duration_cast<ms>(frameTime).count()) * 1000.0f, " fps, "));
-
-        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         GLenum err;
         while ((err = static_cast<GLenum>(glGetError() != GL_NO_ERROR))) {

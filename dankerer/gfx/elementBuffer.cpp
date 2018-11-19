@@ -8,14 +8,18 @@
 using dk::gfx::ElementBuffer;
 
 ElementBuffer::ElementBuffer() {
-    glGenBuffers(1, &m_ebo);
+    glCreateBuffers(1, &m_ebo);
 }
 
 ElementBuffer::~ElementBuffer() {
     glDeleteBuffers(1, &m_ebo);
 }
 
-void ElementBuffer::bind(int *elements, unsigned long count) {
+void ElementBuffer::bind(u32 *elements, unsigned long count) {
+    glNamedBufferData(m_ebo, count, elements, GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, count, elements, GL_STATIC_DRAW);
+}
+
+void ElementBuffer::bind() {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
 }

@@ -7,12 +7,15 @@
 
 #include "common.h"
 #include "renderer.h"
+#include "staticMesh.h"
 #include "camera.h"
 
+#include <GLFW/glfw3.h>
 
 namespace dk {
     namespace gfx {
         class ShaderProgram;
+        class Texture;
         class Shader;
         class VertexBuffer;
         class UniformBuffer;
@@ -39,15 +42,16 @@ namespace dk {
             int m_height;
             bool m_vsync;
 
-            std::unique_ptr<dk::gfx::Renderer> m_renderer;
-            std::unique_ptr<dk::gfx::Camera> m_camera;
+            std::unique_ptr<Renderer> m_renderer;
+            std::unique_ptr<Camera> m_camera;
+            std::unique_ptr<StaticMesh> m_mesh;
 
             GLuint m_vao; //temp
+            Texture* m_tex;
             ShaderProgram* m_shp;
             Shader* m_vert;
             Shader* m_frag;
-            VertexBuffer* m_vbo;
-            UniformBuffer* m_ubo;
+            UniformBufferHandle m_ubo;
         };
     }
 }

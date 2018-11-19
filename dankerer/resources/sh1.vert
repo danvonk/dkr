@@ -1,10 +1,10 @@
 #version 450
 
 in vec3 position;
-in vec3 colour;
+in vec3 normal;
 in vec2 texCoord;
 
-out vec3 Colour;
+out vec3 Normal;
 out vec2 Texcoord;
 
 layout(std140, binding = 0) uniform mvp {
@@ -13,7 +13,7 @@ layout(std140, binding = 0) uniform mvp {
 };
 
 void main() {
-    Colour = colour;
+    Normal = normal;
     Texcoord = texCoord;
     gl_Position = proj * view * vec4(position, 1.0);
 }

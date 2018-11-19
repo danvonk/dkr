@@ -17,7 +17,7 @@ VertexBuffer::~VertexBuffer() {
 }
 
 void VertexBuffer::bind(float *vertices, unsigned long count) {
-    glNamedBufferData(m_id, count, vertices, GL_STATIC_DRAW);
+    glNamedBufferData(m_id, count, vertices, GL_STATIC_DRAW); //separate this!
     glBindBuffer(GL_ARRAY_BUFFER, m_id);
 }
 

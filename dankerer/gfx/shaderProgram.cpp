@@ -25,7 +25,7 @@ void ShaderProgram::addShader(Shader *shader) {
 }
 
 bool dk::gfx::ShaderProgram::link() {
-//    glBindFragDataLocation(m_shp, 0, "outColour"); //TODO: remove...
+    glBindFragDataLocation(m_shp, 0, "outColour"); //TODO: remove...
     glLinkProgram(m_shp);
     glUseProgram(m_shp);
 
@@ -45,7 +45,7 @@ bool dk::gfx::ShaderProgram::link() {
     glEnableVertexAttribArray(pos);
     std::cout << "Val is " << pos << "\n";
     glVertexAttribPointer(pos, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), nullptr);
-    auto norm = glGetAttribLocation(m_shp, "colour");
+    auto norm = glGetAttribLocation(m_shp, "normal");
     std::cout << "Val is " << norm << "\n";
     glEnableVertexAttribArray(norm);
     glVertexAttribPointer(norm, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));

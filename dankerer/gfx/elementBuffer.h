@@ -14,7 +14,8 @@ namespace dk {
             ElementBuffer();
             ~ElementBuffer();
 
-            void bind(int* elements, unsigned long count);
+            void bind(u32 *elements, unsigned long count);
+            void bind();
         private:
             GLuint m_ebo;
         };

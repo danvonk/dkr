@@ -9,15 +9,23 @@
 
 namespace dk {
     namespace gfx {
+        enum class TextureType {
+            Ambient,
+            Diffuse,
+            Specular
+        };
+
         class Texture {
         public:
             Texture();
             ~Texture();
 
             void loadImage(std::string const& fileName);
+            void loadImage(std::string const& fileName, TextureType tt);
 
         private:
             GLuint m_tex;
+            TextureType m_ttype;
         };
     }
 }

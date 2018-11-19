@@ -12,15 +12,19 @@
 using dk::gfx::Camera;
 
 Camera::Camera()
-    : m_position(glm::vec3(-4.0f, 1.2f, 1.2f))
-    , m_front(glm::vec3(0.0f, 0.0f, 0.0f))
-    , m_up(glm::vec3(0.0f, 0.0f, 1.0f))
-    , m_yaw(-90.0f)
+    : m_position(glm::vec3(0.0f, 0.0f, 3.0f))
+    , m_target(glm::vec3(0.0f, 0.0f, 0.0f))
+    , m_up(glm::vec3(0.0f, 1.0f, 0.0f))
+    , m_front(glm::vec3(0.0f, 0.0f, -1.0f))
+
+    , m_cameraDirection(glm::normalize(m_position - m_target))
+    , m_cameraRight(glm::normalize(glm::cross(m_up, m_cameraDirection)))
+    , m_cameraUp(glm::cross(m_cameraDirection, m_cameraRight))
+
     , m_pitch(0.0f)
-    , m_movementSpeed(2.5f)
-    , m_mouseSensitivity(0.1f)
-    , m_zoom(45.0f)
+    , m_yaw(0.0f)
 {
+    m_lastMouse = glm::vec2(m_windowWidth / 2, m_windowHeight / 2);
 }
 
 Camera::Camera(int width, int height)
@@ -30,111 +34,55 @@ Camera::Camera(int width, int height)
     m_windowWidth = width;
 }
 
-void Camera::mouse(int x, int y) {
-//    glm::vec2 mouseDelta = glm::vec2(x, y) - m_mousePosition;
-//
-//    constexpr auto mouseXsensitivity = 0.01f;
-//    constexpr auto mouseYsensitivity = 0.01f;
-//
-//    m_yaw += mouseXsensitivity * mouseDelta.x;
-//    m_pitch += mouseYsensitivity * mouseDelta.y;
-//
-//    m_mousePosition = glm::vec2(x, y);
-//    update();
+void Camera::mouse(double x, double y) {
+    static bool firstMouse = true;
+    if (firstMouse) {
+        m_lastMouse.x = x;
+        m_lastMouse.y = y;
+        firstMouse = false;
+    }
+
+    float xOffset = x - m_lastMouse.x;
+    float yOffset = y - m_lastMouse.y;
+    m_lastMouse = glm::vec2(x,y);
+
+    float sensitivity = 0.1f;
+
+    xOffset *= sensitivity;
+    yOffset *= sensitivity;
+
+    m_yaw += xOffset;
+    m_pitch += yOffset;
+
+    glm::vec3 front;
+    front.x = glm::cos(glm::radians(m_yaw) * cos(glm::radians(m_pitch)));
+    front.y = glm::sin(glm::radians(m_pitch));
+    front.z = glm::sin(glm::radians(m_yaw)) * cos(glm::radians(m_pitch));
+
+    m_front = glm::normalize(front);
 }
 
-
-void Camera::setPosition(const glm::vec3 &pos) {
-    m_position = pos;
-}
 
 glm::mat4 Camera::getProj() {
-    return glm::perspective(glm::radians(m_zoom), (float)m_windowWidth / (float) m_windowHeight, 0.1f, 100.0f);
+    return glm::perspective(glm::radians(45.0f), (float)m_windowWidth / (float) m_windowHeight, 0.1f, 100.0f);
 }
 
 glm::mat4 Camera::getView() {
-    return glm::lookAt(glm::vec3(-4.0f, 1.2f, 1.2f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-}
-
-void Camera::setWindowHeight(int h) {
-    m_windowHeight = h;
-}
-
-int Camera::getWindowWidth() {
-    return m_windowWidth;
-}
-
-int Camera::getWindowHeight() {
-    return m_windowHeight;
-}
-
-void Camera::setWindowWidth(int w) {
-    m_windowWidth = w;
+    return glm::lookAt(m_position, m_position + m_front, m_up);;
 }
 
 void Camera::forward() {
-    float dx = 0;
-    float dz = 2;
-
-    glm::mat4 &mat = m_view;
-    glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
-    glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
-
-    constexpr auto speed = 0.12f;
-    m_position += (-dz * forward + dx * strafe) * speed;
-    update();
+    m_position += 0.05f * m_front;
 }
 
 void Camera::backward(){
-    float dx = 0;
-    float dz = -2;
-
-    glm::mat4 &mat = m_view;
-    glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
-    glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
-
-    constexpr auto speed = 0.12f;
-    m_position += (-dz * forward + dx * strafe) * speed;
-    update();
+    m_position -= 0.05f * m_front;
 }
 
 void Camera::left() {
-    float dx = -2;
-    float dz = 0;
-
-    glm::mat4 &mat = m_view;
-    glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
-    glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
-
-    constexpr auto speed = 0.12f;
-    m_position += (-dz * forward + dx * strafe) * speed;
-    update();
+    m_position -= glm::normalize(glm::cross(m_front, m_up)) * 0.05f;
 }
 
 void Camera::right() {
-    float dx = 2;
-    float dz = 0;
-
-    glm::mat4 &mat = m_view;
-    glm::vec3 forward(mat[0][2], mat[1][2], mat[2][2]);
-    glm::vec3 strafe(mat[0][0], mat[1][0], mat[2][0]);
-
-    constexpr auto speed = 0.12f;
-    m_position += (-dz * forward + dx * strafe) * speed;
-    update();
-}
-
-void Camera::update() {
-//    auto roll = glm::mat4(1.0f);
-//    auto pitch = glm::mat4(1.0f);
-//    auto yaw = glm::mat4(1.0f);
-//
-//    roll = glm::rotate(roll, m_roll, glm::vec3(0.0f, 0.0f, 1.0f));
-//    pitch = glm::rotate(pitch, m_pitch, glm::vec3(1.0f, 0.0f, 0.0f));
-//    yaw = glm::rotate(yaw, m_yaw, glm::vec3(0.0f, 1.0f, 0.0f));
-//
-//    auto rotate = roll * pitch * yaw;
-//    glm::mat4 translate = glm::translate(translate, -m_position);
-//
-//    m_view = rotate * translate;
+    m_position += glm::normalize(glm::cross(m_front, m_up)) * 0.05f;
 }

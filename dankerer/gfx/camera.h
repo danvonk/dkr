@@ -20,7 +20,7 @@ namespace dk {
             Camera(int width, int height);
             ~Camera() = default;
 
-            void mouse(int x, int y);
+            void mouse(double x, double y);
 
             void forward();
             void backward();
@@ -28,34 +28,22 @@ namespace dk {
             void right();
 
 
-            void setPosition(const glm::vec3& pos);
-
-            void update();
-
             glm::mat4 getProj();
             glm::mat4 getView();
 
-            void setWindowHeight(int h);
-            int getWindowHeight();
-            void setWindowWidth(int w);
-            int getWindowWidth();
-
         private:
             glm::vec3 m_position;
-            glm::vec3 m_front;
+            glm::vec3 m_target;
             glm::vec3 m_up;
-            glm::vec3 m_right;
-            glm::vec3 m_worldUp;
+            glm::vec3 m_front;
 
-            glm::mat4 m_view;
-            glm::mat4 m_proj;
+            glm::vec3 m_cameraDirection;
+            glm::vec3 m_cameraRight;
+            glm::vec3 m_cameraUp;
 
+            glm::vec2 m_lastMouse;
             float m_yaw;
             float m_pitch;
-
-            float m_mouseSensitivity;
-            float m_movementSpeed;
-            float m_zoom;
 
             int m_windowWidth;
             int m_windowHeight;
