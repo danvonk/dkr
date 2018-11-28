@@ -20,29 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c255f70-8f58-468b-aa7e-345a17b2485c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/commandBuffer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/commandBuffer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/commandBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/commandBuffer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/common.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/common.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/drawCommands.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/drawCommands.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/material.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/material.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/material.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/material.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/renderer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shader.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/shaderProgram.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/staticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/staticMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/staticMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/staticMesh.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/texture.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/texture.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/texture.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/texture.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/vertexArrayConfig.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/vertexArrayConfig.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/vertexArrayConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/vertexArrayConfig.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/window.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dankerer/gfx/window.h" beforeDir="false" afterPath="$PROJECT_DIR$/../dankerer/gfx/window.h" afterDir="false" />
-    </list>
+    <list default="true" id="0c255f70-8f58-468b-aa7e-345a17b2485c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +47,7 @@
         <counts>
           <entry key="project.closed" value="35" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.12" value="4" />
+          <entry key="project.open.time.12" value="5" />
           <entry key="project.open.time.13" value="6" />
           <entry key="project.open.time.14" value="5" />
           <entry key="project.open.time.15" value="7" />
@@ -81,7 +59,7 @@
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.opened" value="37" />
+          <entry key="project.opened" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -144,10 +122,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
+            <state relative-caret-position="521">
               <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#38#64#0" expanded="true" />
@@ -210,10 +188,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../dankerer/gfx/staticMesh.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2244">
+            <state relative-caret-position="521">
               <caret line="102" selection-start-line="102" selection-end-line="102" />
               <folding>
                 <element signature="e#94#121#0" expanded="true" />
@@ -380,6 +358,12 @@
               <item name="dankerer" type="b2602c69:ProjectViewProjectNode" />
               <item name="dankerer" type="34d14456:WorkspaceRootNode" />
               <item name="dankerer" type="9fb85e4c:BlazePsiDirectoryRootNode" />
+              <item name="resources" type="81dbbfc7:BlazePsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dankerer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dankerer" type="34d14456:WorkspaceRootNode" />
+              <item name="dankerer" type="9fb85e4c:BlazePsiDirectoryRootNode" />
               <item name="ui" type="81dbbfc7:BlazePsiDirectoryNode" />
             </path>
             <path>
@@ -471,11 +455,12 @@
       <workItem from="1542727760143" duration="3025000" />
       <workItem from="1542799569324" duration="6366000" />
       <workItem from="1543306442580" duration="597000" />
+      <workItem from="1543336843435" duration="1033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185243000" />
+    <option name="totallyTimeSpent" value="186276000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -488,21 +473,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984326" visible="true" weight="0.14797008" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4984326" visible="true" weight="0.14957266" />
       <window_info id="Structure" order="1" sideWeight="0.5015674" side_tool="true" weight="0.17845912" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32933652" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.45245728" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.45192307" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.47008547" weight="0.30877572" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49928162" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Blaze Console" order="9" sideWeight="0.54754275" side_tool="true" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Blaze Console" order="9" sideWeight="0.5480769" side_tool="true" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49795586" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Blaze Problems" order="12" sideWeight="0.48878205" weight="0.32936078" />
@@ -836,16 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/staticMesh.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2244">
-          <caret line="102" selection-start-line="102" selection-end-line="102" />
-          <folding>
-            <element signature="e#94#121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/gfx/window.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="704">
@@ -868,10 +842,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../dankerer/gfx/shaderProgram.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
+        <state relative-caret-position="521">
           <caret line="58" selection-start-line="58" selection-end-line="58" />
           <folding>
             <element signature="e#38#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../dankerer/gfx/staticMesh.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <element signature="e#94#121#0" expanded="true" />
           </folding>
         </state>
       </provider>
