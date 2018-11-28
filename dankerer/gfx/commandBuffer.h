@@ -13,6 +13,7 @@
 namespace dk {
     namespace gfx {
         class CommandBuffer {
+            friend class Renderer;
         public:
             CommandBuffer() = default;
             ~CommandBuffer() = default;
@@ -21,6 +22,7 @@ namespace dk {
             void addDrawCommand(u64 materialKey, DrawIndexed di);
 
             void sort();
+            void clear();
 
         private:
             std::vector<std::pair<u64, std::variant<Draw, DrawIndexed>>> m_commands;

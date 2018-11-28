@@ -19,10 +19,8 @@
 #include "texture.h"
 #include "uniformBuffer.h"
 #include "commandBuffer.h"
+#include "vertexArrayConfig.h"
 #include "framebuffer.h"
-
-#include "absl/container/flat_hash_set.h"
-#include "absl/container/flat_hash_map.h"
 
 namespace dk {
     namespace gfx {
@@ -37,7 +35,7 @@ namespace dk {
             void setWindowHeight(int h);
             int getWindowHeight();
 
-            void executeCommandBuffer(CommandBuffer* buf);
+            void submit(CommandBuffer* buf);
             void clear();
 
             VertexBufferHandle createVertexBuffer();
@@ -54,6 +52,7 @@ namespace dk {
             void deleteUniformBuffer(UniformBufferHandle h);
 
             ShaderHandle createShader(GLenum type);
+            ShaderHandle createShader(GLenum type, absl::string_view file);
             Shader& accessShader(ShaderHandle h);
             void deleteShader(ShaderHandle h);
 
@@ -73,10 +72,14 @@ namespace dk {
             Material& accessMaterial(MaterialHandle h);
             void deleteMaterial(MaterialHandle h);
 
+            VertexArrayConfig& getVertexArrayConfig();
+
         private:
             std::string m_deviceVendor;
             std::string m_deviceRenderer;
             std::string m_deviceVersion;
+
+            VertexArrayConfig m_vaoConfig;
 
             //probably switch from standard new to an arena allocator
             std::array<std::pair<VertexBuffer*, u32>, 4096> m_vertexBuffers;
@@ -91,7 +94,6 @@ namespace dk {
             int m_windowWidth;
             int m_windowHeight;
             GLbitfield m_mask;
-
         };
     }
 }

@@ -22,6 +22,8 @@ namespace dk {
 
         struct DrawIndexed {
             u32 m_indexCount;
+            u32 m_vertexCount;
+
             u32 m_startIndex;
             u32 m_baseVertex;
 

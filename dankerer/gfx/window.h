@@ -7,6 +7,7 @@
 
 #include "common.h"
 #include "renderer.h"
+#include "commandBuffer.h"
 #include "staticMesh.h"
 #include "camera.h"
 
@@ -45,12 +46,10 @@ namespace dk {
             std::unique_ptr<Renderer> m_renderer;
             std::unique_ptr<Camera> m_camera;
             std::unique_ptr<StaticMesh> m_mesh;
+            std::unique_ptr<CommandBuffer> m_cmdBuf;
 
             GLuint m_vao; //temp
-            Texture* m_tex;
-            ShaderProgram* m_shp;
-            Shader* m_vert;
-            Shader* m_frag;
+
             UniformBufferHandle m_ubo;
         };
     }

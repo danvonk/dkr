@@ -8,6 +8,7 @@
 #include "dankerer/base/stb_image.h"
 
 
+
 using dk::gfx::Texture;
 
 Texture::Texture() {
@@ -36,4 +37,10 @@ void Texture::loadImage(std::string const &fileName) {
 void Texture::loadImage(std::string const &fileName, TextureType tt) {
     m_ttype = tt;
     loadImage(fileName);
+}
+
+void Texture::bind(u32 samplerUnit) {
+    //glActiveTexture(GL_TEXTURE + samplerUnit);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_tex);
 }

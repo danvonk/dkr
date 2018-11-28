@@ -10,11 +10,12 @@
 
 using dk::gfx::Shader;
 
-Shader::Shader(GLenum shaderType, std::string const &fileName) {
+Shader::Shader(GLenum shaderType, absl::string_view fileName) {
     m_isCompiled = false;
     m_shader = glCreateShader(shaderType);
-    m_fileName = fileName;
+    m_fileName = std::string(fileName);
     m_shaderType = shaderType;
+    compile(); //may as well compile if everything is here
 }
 
 Shader::Shader(GLenum shaderType) {

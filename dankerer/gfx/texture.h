@@ -23,6 +23,8 @@ namespace dk {
             void loadImage(std::string const& fileName);
             void loadImage(std::string const& fileName, TextureType tt);
 
+            void bind(u32 samplerUnit = 0);
+
         private:
             GLuint m_tex;
             TextureType m_ttype;

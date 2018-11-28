@@ -20,6 +20,9 @@ void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
     m_vbo = rend.createVertexBuffer();
     m_ebo = rend.createElementBuffer();
 
+    m_vert = rend.createShader(GL_VERTEX_SHADER, "dankerer/resources/sh1.vert");
+    m_frag = rend.createShader(GL_FRAGMENT_SHADER, "dankerer/resources/sh1.frag");
+
     Assimp::Importer importer;
     const aiScene *pScene = importer.ReadFile(fileName.c_str(), aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_FlipUVs);
     if (!pScene) {
@@ -30,6 +33,8 @@ void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
 
     auto verticesProcessed = 0u;
     auto indicesProcessed = 0u;
+
+    absl::flat_hash_map<int, MaterialHandle> m_cachedMaterials;
 
     for (auto i = 0u; i < pScene->mNumMeshes; i++) {
         const aiMesh *mesh = pScene->mMeshes[i];
@@ -69,7 +74,7 @@ void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
                 meshComponent.m_indices.push_back(mesh->mFaces[k].mIndices[2]);
                 indicesProcessed += 3;
             } else {
-                std::cout << "wierd number of indices to a face: " << mesh->mFaces->mNumIndices << std::endl;
+                std::cout << "weird number of indices to a face: " << mesh->mFaces->mNumIndices << std::endl;
             }
         }
 
@@ -80,7 +85,21 @@ void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
 
         m_indices.insert(m_indices.end(), std::make_move_iterator(meshComponent.m_indices.begin()), std::make_move_iterator(meshComponent.m_indices.end()));
 
-        meshComponent.m_material = loadMaterial(pScene->mMaterials[mesh->mMaterialIndex], rend);
+        //TODO: Add an option to not automatically load a models .MTL/.FBX/... file
+        if (m_cachedMaterials.contains(mesh->mMaterialIndex)) {
+            //material has already been loaded
+            meshComponent.m_material = m_cachedMaterials[mesh->mMaterialIndex];
+        } else {
+            //load the material into the engine
+            MaterialHandle h = loadMaterial(pScene->mMaterials[mesh->mMaterialIndex], rend);
+            m_cachedMaterials[mesh->mMaterialIndex] = h;
+            meshComponent.m_material = h;
+
+            auto& mat = rend.accessMaterial(h);
+            mat.addShader(m_vert);
+            mat.addShader(m_frag);
+        }
+
         m_subMeshes.push_back(meshComponent);
     }
 
@@ -99,12 +118,14 @@ u64 StaticMesh::getVertCount() {
 
 MaterialHandle StaticMesh::loadMaterial(aiMaterial *mat, Renderer& rend) {
     auto matHandle = rend.createMaterial();
-    auto gameMat = rend.accessMaterial(matHandle);
+    auto& gameMat = rend.accessMaterial(matHandle);
 
     aiString m_name;
     if (mat->Get(AI_MATKEY_NAME, m_name) == AI_SUCCESS) {
         gameMat.setName(m_name.C_Str());
     }
+
+    std::cout << "Info: Loaded new material named: " << gameMat.getName() << '\n';
 
     float specularExp;
     if (mat->Get(AI_MATKEY_SHININESS, specularExp) == AI_SUCCESS) {
@@ -180,9 +201,12 @@ void StaticMesh::render(CommandBuffer *buffer) {
         DrawIndexed draw;
         draw.m_eleBuffer = mesh.m_ebo;
         draw.m_vertexBuffer = mesh.m_vbo;
+
         draw.m_baseVertex = mesh.m_startVertex;
         draw.m_startIndex = mesh.m_startVertex;
+
         draw.m_indexCount = mesh.m_elementCount;
+        draw.m_vertexCount = mesh.m_vertexCount;
 
         buffer->addDrawCommand(generateMaterialKey(mesh.m_material), draw);
     }

@@ -3,13 +3,10 @@
 //
 
 #include "renderer.h"
-#include "dankerer/gfx/renderer.h"
-
 
 using namespace dk::gfx;
 
-Renderer::Renderer(int width, int height)
-{
+Renderer::Renderer(int width, int height) {
     m_windowWidth = width;
     m_windowHeight = height;
 
@@ -53,7 +50,7 @@ VertexBufferHandle Renderer::createVertexBuffer() {
     VertexBufferHandle h;
 
     for (auto i = 0u; i < m_vertexBuffers.size(); i++) {
-        auto& vbo = m_vertexBuffers[i];
+        auto &vbo = m_vertexBuffers[i];
         if (!vbo.first) {
             //free spot
             vbo.first = new VertexBuffer();
@@ -80,7 +77,7 @@ ElementBufferHandle Renderer::createElementBuffer() {
     ElementBufferHandle h;
 
     for (auto i = 0u; i < m_eleBuffers.size(); i++) {
-        auto& ebo = m_eleBuffers[i];
+        auto &ebo = m_eleBuffers[i];
         if (!ebo.first) {
             //free spot
             ebo.first = new ElementBuffer();
@@ -106,7 +103,7 @@ UniformBufferHandle Renderer::createUniformBuffer() {
     UniformBufferHandle h;
 
     for (auto i = 0u; i < m_uniformBuffers.size(); i++) {
-        auto& ubo = m_uniformBuffers[i];
+        auto &ubo = m_uniformBuffers[i];
         if (!ubo.first) {
             //free spot
             ubo.first = new UniformBuffer();
@@ -133,7 +130,7 @@ ShaderHandle Renderer::createShader(GLenum type) {
     ShaderHandle h;
 
     for (auto i = 0u; i < m_shaders.size(); i++) {
-        auto& sh = m_shaders[i];
+        auto &sh = m_shaders[i];
         if (!sh.first) {
             //free spot
             sh.first = new Shader(type);
@@ -144,6 +141,23 @@ ShaderHandle Renderer::createShader(GLenum type) {
         }
     }
 }
+
+ShaderHandle Renderer::createShader(GLenum type, absl::string_view file) {
+    ShaderHandle h;
+
+    for (auto i = 0u; i < m_shaders.size(); i++) {
+        auto &sh = m_shaders[i];
+        if (!sh.first) {
+            //free spot
+            sh.first = new Shader(type, file);
+            h.m_index = i;
+            h.m_generation = sh.second;
+
+            return h;
+        }
+    }
+}
+
 
 Shader &Renderer::accessShader(ShaderHandle h) {
     assert(h.m_generation == m_shaders[h.m_index].second);
@@ -159,7 +173,7 @@ ShaderProgramHandle Renderer::createShaderProgram() {
     ShaderProgramHandle h;
 
     for (auto i = 0u; i < m_shaderPrograms.size(); i++) {
-        auto& shp = m_shaderPrograms[i];
+        auto &shp = m_shaderPrograms[i];
         if (!shp.first) {
             //free spot
             shp.first = new ShaderProgram();
@@ -185,7 +199,7 @@ FramebufferHandle Renderer::createFramebuffer() {
     FramebufferHandle h;
 
     for (auto i = 0u; i < m_framebuffers.size(); i++) {
-        auto& fb = m_framebuffers[i];
+        auto &fb = m_framebuffers[i];
         if (!fb.first) {
             //free spot
             fb.first = new Framebuffer();
@@ -211,7 +225,7 @@ TextureHandle Renderer::createTexture() {
     TextureHandle h;
 
     for (auto i = 0u; i < m_textures.size(); i++) {
-        auto& tx = m_textures[i];
+        auto &tx = m_textures[i];
         if (!tx.first) {
             //free spot
             tx.first = new Texture();
@@ -237,10 +251,10 @@ MaterialHandle Renderer::createMaterial() {
     MaterialHandle h;
 
     for (auto i = 0u; i < m_materials.size(); i++) {
-        auto& mat = m_materials[i];
+        auto &mat = m_materials[i];
         if (!mat.first) {
             //free spot
-            mat.first = new Material();
+            mat.first = new Material(this);
             h.m_index = i;
             h.m_generation = mat.second;
 
@@ -250,6 +264,9 @@ MaterialHandle Renderer::createMaterial() {
 }
 
 Material &Renderer::accessMaterial(MaterialHandle h) {
+    if (h.m_generation != m_materials[h.m_index].second) {
+        std::cerr << "Handle has gen " << h.m_generation << " but renderer has gen " << m_materials[h.m_index].second << '\n';
+    }
     assert(h.m_generation == m_materials[h.m_index].second);
     return *(m_materials[h.m_index].first);
 }
@@ -259,6 +276,39 @@ void Renderer::deleteMaterial(MaterialHandle h) {
     delete m_materials[h.m_index].first;
 }
 
-void Renderer::executeCommandBuffer(CommandBuffer *buf) {
+void Renderer::submit(CommandBuffer *buf) {
     buf->sort();
+    for (const auto &el : buf->m_commands) {
+        u64 key;
+        std::variant < Draw, DrawIndexed > cmd;
+        std::tie(key, cmd) = el;
+
+        //set material
+        MaterialHandle h;
+        h.m_index = static_cast<u32>(key);
+        h.m_generation = 0; //assume it's 0, no checks
+        accessMaterial(h).bind();
+
+        try {
+            Draw d = std::get<Draw>(cmd);
+            glDrawArrays(GL_TRIANGLES, 0, d.m_vertexCount);
+
+        } catch (const std::bad_variant_access&) {
+            try {
+                DrawIndexed e = std::get<DrawIndexed>(cmd);
+                glDrawElements(GL_TRIANGLES, e.m_vertexCount, GL_UNSIGNED_INT, (void*)(e.m_startIndex * 3 * sizeof(u32)));
+
+            } catch (const std::bad_variant_access &ex) {
+                //variant is neither draw nor drawindexed??
+                std::cerr << "Submitted draw call contains invalid data packet\n";
+                continue;
+            }
+        }
+    }
+    buf->clear();
 }
+
+VertexArrayConfig &Renderer::getVertexArrayConfig() {
+    return m_vaoConfig;
+}
+

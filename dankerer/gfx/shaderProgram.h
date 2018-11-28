@@ -12,15 +12,17 @@
 namespace dk {
     namespace gfx {
         class Shader;
+        class Renderer;
         class ShaderProgram {
         public:
             ShaderProgram();
             ~ShaderProgram();
 
-            void addShader(Shader* shader);
-            bool link();
+            void addShader(ShaderHandle shader, Renderer* rend);
+            bool link(Renderer* rend);
 
             void setUniform(GLuint bindingPoint, int value);
+
             GLuint getID() {
                 return m_shp;
             }

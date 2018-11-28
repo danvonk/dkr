@@ -59,6 +59,10 @@ namespace dk {
             std::vector<Vertex> m_vertices;
             std::vector<u32> m_indices;
             u64 m_vertCount;
+
+            //temporary shaders for phong lighting
+            ShaderHandle m_vert;
+            ShaderHandle m_frag;
         };
     }
 }

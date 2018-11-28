@@ -10,9 +10,11 @@
 namespace dk {
     namespace gfx {
         enum class VertexAttributeLayout {
-            PositionNormalTexture,
-            PositionNormal,
-            PositionColour
+            Default,
+            Position3Normal3Colour3,
+            Position3Normal3,
+            Position3Colour3,
+            Position3Normal3Tex2
         };
 
         class VertexArrayConfig {
@@ -20,12 +22,15 @@ namespace dk {
             VertexArrayConfig();
             ~VertexArrayConfig();
 
-            void createNewConfig();
-            void bindConfig();
+            //return false if the layout was already in the cache
+            //will automatically bind
+            bool addLayout(VertexAttributeLayout l);
+            //return false if a new layout was added (i.e. not in cache)
+            bool bindLayout(VertexAttributeLayout l);
+            void deleteLayout(VertexAttributeLayout l);
 
         private:
-            std::vector<GLuint> m_vaos;
-
+            absl::flat_hash_map<VertexAttributeLayout, GLuint> m_vaoMap;
         };
     }
 }

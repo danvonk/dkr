@@ -5,8 +5,18 @@
 #include "material.h"
 #include "renderer.h"
 
-
 using namespace dk::gfx;
+
+Material::Material(Renderer *rend)
+ : m_renderer(rend)
+{
+    m_shp = rend->createShaderProgram();
+}
+
+
+Material::~Material() {
+
+}
 
 const std::string& Material::getName() const {
     return m_name;
@@ -72,12 +82,26 @@ void Material::setSpecularColour(const glm::vec3 &specularColour) {
     Material::m_specularColour = specularColour;
 }
 
-void Material::bind(Renderer *rend) {
-
+void Material::bind() {
+    m_renderer->accessShaderProgram(m_shp).link(m_renderer);
+    if (!m_textures.empty()) {
+        //just the first texture for now...
+        m_renderer->accessTexture(m_textures[0]).bind(0);
+    }
 }
 
-void Material::addTexture(std::string const &fileName, TextureType tt, Renderer* rend) {
+void Material::addTexture(std::string fileName, TextureType tt, Renderer* rend) {
+    std::replace(fileName.begin(), fileName.end(), '\\', '/');
+    auto relPath = absl::StrCat("dankerer/resources" ,fileName);
+
     auto txHandle = rend->createTexture();
-    rend->accessTexture(txHandle).loadImage(fileName, tt);
+    rend->accessTexture(txHandle).loadImage(relPath, tt);
     m_textures.push_back(txHandle);
 }
+
+void Material::addShader(ShaderHandle sh) {
+    m_shaders.push_back(sh);
+    m_renderer->accessShader(sh).compile();
+    m_renderer->accessShaderProgram(m_shp).addShader(sh, m_renderer);
+}
+

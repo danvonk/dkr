@@ -19,11 +19,13 @@ namespace dk {
 
         class Material {
         public:
-            Material() = default;
-            ~Material() = default;
+            Material(Renderer* rend);
+            ~Material();
 
             //set shaders, uniforms, textures...
-            void bind(Renderer* rend);
+            void bind();
+
+            void addShader(ShaderHandle sh);
 
             const std::string &getName() const;
             void setName(const std::string &name);
@@ -49,7 +51,7 @@ namespace dk {
             const glm::vec3 &getSpecularColour() const;
             void setSpecularColour(const glm::vec3 &specularColour);
 
-            void addTexture(std::string const& fileName, TextureType tt, Renderer* rend);
+            void addTexture(std::string fileName, TextureType tt, Renderer* rend);
 
 
             template <typename H>
@@ -69,6 +71,10 @@ namespace dk {
             glm::vec3 m_specularColour;
 
             std::vector<TextureHandle> m_textures;
+            ShaderProgramHandle m_shp;
+            std::vector<ShaderHandle> m_shaders;
+
+            Renderer* m_renderer;
         };
     }
 }
