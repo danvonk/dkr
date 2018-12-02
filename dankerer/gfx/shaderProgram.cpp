@@ -6,7 +6,7 @@
 #include "shader.h"
 #include "renderer.h"
 
-
+using dk::gfx::Renderer;
 using dk::gfx::ShaderProgram;
 using dk::gfx::Shader;
 

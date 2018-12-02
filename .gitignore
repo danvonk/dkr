@@ -8,6 +8,8 @@
 /.idea/
 /.clwb/
 /.ijwb/
+/build
+/.vs
 /.project
 /.settings
 /.vscode/

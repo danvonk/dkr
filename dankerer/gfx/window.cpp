@@ -61,7 +61,7 @@ void Window::handleMouse(GLFWwindow* window, double xpos, double ypos) {
 
 void Window::init() {
     m_mesh = std::make_unique<StaticMesh>();
-    m_mesh->loadFromFile("dankerer/resources/living_room.obj", *m_renderer);
+    m_mesh->loadFromFile("C:/Users/dan/dev/dkr/dankerer/resources/living_room.obj", *m_renderer);
 
     m_ubo = m_renderer->createUniformBuffer();
     CameraMatrix cameraMatrix;

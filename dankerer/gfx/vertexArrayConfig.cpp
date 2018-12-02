@@ -21,7 +21,8 @@ VertexArrayConfig::~VertexArrayConfig() {
 }
 
 bool VertexArrayConfig::addLayout(VertexAttributeLayout l) {
-    if (m_vaoMap.contains(l)) {
+	auto it = m_vaoMap.find(l);
+    if (it != m_vaoMap.end()) {
         glBindVertexArray(m_vaoMap[l]);
         return false;
     } else {
@@ -34,7 +35,8 @@ bool VertexArrayConfig::addLayout(VertexAttributeLayout l) {
 }
 
 bool VertexArrayConfig::bindLayout(VertexAttributeLayout l) {
-    if (m_vaoMap.contains(l)) {
+	auto it = m_vaoMap.find(l);
+    if (it != m_vaoMap.end()) {
         glBindVertexArray(m_vaoMap[l]);
         return true;
     } else {
@@ -44,7 +46,8 @@ bool VertexArrayConfig::bindLayout(VertexAttributeLayout l) {
 }
 
 void VertexArrayConfig::deleteLayout(VertexAttributeLayout l) {
-    if (m_vaoMap.contains(l)) {
+	auto it = m_vaoMap.find(l);
+    if (it != m_vaoMap.end()) {
         glDeleteVertexArrays(1, &m_vaoMap[l]);
         m_vaoMap.erase(l);
     }

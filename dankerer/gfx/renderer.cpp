@@ -142,7 +142,7 @@ ShaderHandle Renderer::createShader(GLenum type) {
     }
 }
 
-ShaderHandle Renderer::createShader(GLenum type, absl::string_view file) {
+ShaderHandle Renderer::createShader(GLenum type, std::string const& file) {
     ShaderHandle h;
 
     for (auto i = 0u; i < m_shaders.size(); i++) {
@@ -279,32 +279,17 @@ void Renderer::deleteMaterial(MaterialHandle h) {
 void Renderer::submit(CommandBuffer *buf) {
     buf->sort();
     for (const auto &el : buf->m_commands) {
-        u64 key;
-        std::variant < Draw, DrawIndexed > cmd;
-        std::tie(key, cmd) = el;
+		u64 key = std::get<0>(el);
+		const DrawIndexed& d = std::get<1>(el);
 
         //set material
         MaterialHandle h;
         h.m_index = static_cast<u32>(key);
         h.m_generation = 0; //assume it's 0, no checks
         accessMaterial(h).bind();
-
-        try {
-            Draw d = std::get<Draw>(cmd);
-            glDrawArrays(GL_TRIANGLES, 0, d.m_vertexCount);
-
-        } catch (const std::bad_variant_access&) {
-            try {
-                DrawIndexed e = std::get<DrawIndexed>(cmd);
-                glDrawElements(GL_TRIANGLES, e.m_vertexCount, GL_UNSIGNED_INT, (void*)(e.m_startIndex * 3 * sizeof(u32)));
-
-            } catch (const std::bad_variant_access &ex) {
-                //variant is neither draw nor drawindexed??
-                std::cerr << "Submitted draw call contains invalid data packet\n";
-                continue;
-            }
-        }
-    }
+		
+		glDrawElements(GL_TRIANGLES, d.m_vertexCount, GL_UNSIGNED_INT, (void*)(d.m_startIndex * 3 * sizeof(u32)));
+	}
     buf->clear();
 }
 

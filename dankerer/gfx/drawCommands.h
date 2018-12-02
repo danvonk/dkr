@@ -12,14 +12,6 @@ namespace dk {
         class VertexBuffer;
         class ElementBuffer;
 
-        struct Draw {
-            u32 m_vertexCount;
-            u32 m_startVertex;
-
-            VertexBufferHandle m_vertexBuffer;
-            ElementBufferHandle m_eleBuffer;
-        };
-
         struct DrawIndexed {
             u32 m_indexCount;
             u32 m_vertexCount;

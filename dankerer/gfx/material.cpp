@@ -92,10 +92,11 @@ void Material::bind() {
 
 void Material::addTexture(std::string fileName, TextureType tt, Renderer* rend) {
     std::replace(fileName.begin(), fileName.end(), '\\', '/');
-    auto relPath = absl::StrCat("dankerer/resources" ,fileName);
+    //auto relPath = absl::StrCat("dankerer/resources" ,fileName);
+	auto relPath = "dankerer/resources" + fileName;
 
     auto txHandle = rend->createTexture();
-    rend->accessTexture(txHandle).loadImage(relPath, tt);
+    rend->accessTexture(txHandle).loadImageWithType(relPath, tt);
     m_textures.push_back(txHandle);
 }
 

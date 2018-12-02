@@ -6,6 +6,7 @@
 #define DANKERER_VERTEXARRAYCONFIG_H
 
 #include "common.h"
+#include <unordered_map>
 
 namespace dk {
     namespace gfx {
@@ -30,7 +31,7 @@ namespace dk {
             void deleteLayout(VertexAttributeLayout l);
 
         private:
-            absl::flat_hash_map<VertexAttributeLayout, GLuint> m_vaoMap;
+            std::unordered_map<VertexAttributeLayout, GLuint> m_vaoMap;
         };
     }
 }

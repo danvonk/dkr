@@ -5,11 +5,9 @@
 #include "texture.h"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "dankerer/base/stb_image.h"
+#include "base/stb_image.h"
 
-
-
-using dk::gfx::Texture;
+using namespace dk::gfx;
 
 Texture::Texture() {
     glGenTextures(1, &m_tex);
@@ -34,7 +32,7 @@ void Texture::loadImage(std::string const &fileName) {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
 
-void Texture::loadImage(std::string const &fileName, TextureType tt) {
+void Texture::loadImageWithType(std::string const &fileName, TextureType tt) {
     m_ttype = tt;
     loadImage(fileName);
 }

@@ -5,6 +5,8 @@
 #ifndef DANKERER_COMMON_H
 #define DANKERER_COMMON_H
 
+#define GLEW_STATIC
+
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -16,8 +18,6 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
-#include "absl/strings/string_view.h"
-#include "absl/container/flat_hash_map.h"
 
 using u8 = uint8_t;
 using u16 = uint16_t;

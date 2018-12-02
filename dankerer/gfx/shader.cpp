@@ -10,7 +10,7 @@
 
 using dk::gfx::Shader;
 
-Shader::Shader(GLenum shaderType, absl::string_view fileName) {
+Shader::Shader(GLenum shaderType, std::string const& fileName) {
     m_isCompiled = false;
     m_shader = glCreateShader(shaderType);
     m_fileName = std::string(fileName);

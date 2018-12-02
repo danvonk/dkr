@@ -1,7 +1,7 @@
+#define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <experimental/filesystem>
-#include "absl/strings/str_cat.h"
 
 #include "gfx/window.h"
 
@@ -75,7 +75,10 @@ int main() {
         currentTime = newTime;
 
         gameWindow.update(chr::duration_cast<ms>(frameTime).count());
-        gameWindow.setTitle(absl::StrCat("DanVonkRenderer @ ", ((float) 1/ (float) chr::duration_cast<ms>(frameTime).count()) * 1000.0f, " fps, "));
+
+		float fps = ((float)1 / (float)chr::duration_cast<ms>(frameTime).count()) * 1000.0f;
+		std::string title = "DVK @ " + std::to_string(fps) + " fps";
+        gameWindow.setTitle(title);
 
         GLenum err;
         while ((err = static_cast<GLenum>(glGetError() != GL_NO_ERROR))) {

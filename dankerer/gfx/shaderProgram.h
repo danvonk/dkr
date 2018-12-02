@@ -6,7 +6,7 @@
 #define DANKERER_SHADERPROGRAM_H
 
 #include "common.h"
-#include "dankerer/gfx/shader.h"
+#include "gfx/shader.h"
 
 
 namespace dk {

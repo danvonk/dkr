@@ -1,0 +1,1 @@
+add_library(Base STATIC timer.cpp tinyxml2.cpp)

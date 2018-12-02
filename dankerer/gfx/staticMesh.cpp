@@ -1,6 +1,7 @@
 //
 // Created by dan on 27/10/18.
 //
+#include <boost/filesystem.hpp>
 #include <unordered_map>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>
@@ -20,13 +21,15 @@ void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
     m_vbo = rend.createVertexBuffer();
     m_ebo = rend.createElementBuffer();
 
-    m_vert = rend.createShader(GL_VERTEX_SHADER, "dankerer/resources/sh1.vert");
-    m_frag = rend.createShader(GL_FRAGMENT_SHADER, "dankerer/resources/sh1.frag");
+    m_vert = rend.createShader(GL_VERTEX_SHADER, "C:/Users/dan/dev/dkr/dankerer/resources/sh1.vert");
+    m_frag = rend.createShader(GL_FRAGMENT_SHADER, "C:/Users/dan/dev/dkr/dankerer/resources/sh1.frag");
 
     Assimp::Importer importer;
     const aiScene *pScene = importer.ReadFile(fileName.c_str(), aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_FlipUVs);
     if (!pScene) {
-        std::cerr << "Error: Could not load model.\n";
+		boost::filesystem::path full_path(boost::filesystem::current_path());
+		std::cerr << "Error: Could not load model at " << fileName << '\n';
+		std::cerr << "Error: Current path is " << full_path << '\n';
         return;
     }
     std::cout << "Info: Model has " << pScene->mNumMeshes << " meshes and " << pScene->mNumMaterials << " materials\n";
@@ -34,7 +37,7 @@ void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
     auto verticesProcessed = 0u;
     auto indicesProcessed = 0u;
 
-    absl::flat_hash_map<int, MaterialHandle> m_cachedMaterials;
+    std::unordered_map<int, MaterialHandle> m_cachedMaterials;
 
     for (auto i = 0u; i < pScene->mNumMeshes; i++) {
         const aiMesh *mesh = pScene->mMeshes[i];
@@ -86,7 +89,8 @@ void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
         m_indices.insert(m_indices.end(), std::make_move_iterator(meshComponent.m_indices.begin()), std::make_move_iterator(meshComponent.m_indices.end()));
 
         //TODO: Add an option to not automatically load a models .MTL/.FBX/... file
-        if (m_cachedMaterials.contains(mesh->mMaterialIndex)) {
+		auto it = m_cachedMaterials.find(mesh->mMaterialIndex);
+        if (it != m_cachedMaterials.end()) {
             //material has already been loaded
             meshComponent.m_material = m_cachedMaterials[mesh->mMaterialIndex];
         } else {

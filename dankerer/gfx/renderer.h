@@ -5,11 +5,11 @@
 #ifndef DANKERER_RENDERER_H
 #define DANKERER_RENDERER_H
 
-#include "dankerer/base/short_alloc.h"
 #include "common.h"
 #include "camera.h"
 #include "material.h"
 
+#include <array>
 #include <optional>
 
 #include "vertexBuffer.h"
@@ -52,7 +52,7 @@ namespace dk {
             void deleteUniformBuffer(UniformBufferHandle h);
 
             ShaderHandle createShader(GLenum type);
-            ShaderHandle createShader(GLenum type, absl::string_view file);
+            ShaderHandle createShader(GLenum type, std::string const& file);
             Shader& accessShader(ShaderHandle h);
             void deleteShader(ShaderHandle h);
 

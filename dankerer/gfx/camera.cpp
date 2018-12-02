@@ -3,7 +3,7 @@
 //
 
 #include "camera.h"
-#include "dankerer/gfx/camera.h"
+#include "gfx/camera.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>

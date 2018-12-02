@@ -12,7 +12,7 @@ namespace dk {
         class Shader {
             friend class ShaderProgram;
         public:
-            Shader(GLenum shaderType, absl::string_view fileName);
+            Shader(GLenum shaderType, std::string const& fileName);
             explicit Shader(GLenum shaderType);
             ~Shader();
 
