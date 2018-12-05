@@ -24,14 +24,10 @@ Window::Window(GLFWwindow* window, int width, int height)
     , m_camera(new Camera(m_width, m_height))
     , m_cmdBuf(new CommandBuffer())
 {
-    glGenVertexArrays(1, &m_vao);
-    glBindVertexArray(m_vao);
 }
 
 Window::~Window() {
     m_renderer->deleteUniformBuffer(m_ubo);
-
-    glDeleteVertexArrays(1, &m_vao);
 }
 
 void Window::setTitle(std::string const &title) {

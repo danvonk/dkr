@@ -18,6 +18,11 @@ namespace dk {
             Position3Normal3Tex2
         };
 
+		struct VertexArrayLayout {
+			VertexAttributeLayout m_layout;
+			GLuint m_vao;
+		};
+
         class VertexArrayConfig {
         public:
             VertexArrayConfig();

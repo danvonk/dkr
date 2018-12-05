@@ -12,7 +12,6 @@ namespace dk {
         public:
             Framebuffer() = default;
             ~Framebuffer() = default;
-
         };
     }
 }

@@ -35,6 +35,7 @@ ${CMAKE_SOURCE_DIR}/dankerer
 ${CMAKE_SOURCE_DIR}/third_party/glm
 ${CMAKE_SOURCE_DIR}/third_party/assimp/include
 ${CMAKE_SOURCE_DIR}/third_party/glfw/include
+${CMAKE_SOURCE_DIR}/third_party/entt/src
 ${GLEW_INCLUDE_DIRS}
 ${Boost_INCLUDE_DIRS}
 ${OPENGL_INCLUDE_DIR}

@@ -12,6 +12,19 @@ VertexArrayConfig::VertexArrayConfig() {
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
     m_vaoMap[VertexAttributeLayout::Default] = vao;
+
+	//auto pos = glGetAttribLocation(m_shp, "position");
+	glEnableVertexAttribArray(0);
+	//std::cout << "Val is " << pos << "\n";
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), nullptr);
+	//auto norm = glGetAttribLocation(m_shp, "normal");
+	//std::cout << "Val is " << norm << "\n";
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void *)(3 * sizeof(GLfloat)));
+	//auto texc = glGetAttribLocation(m_shp, "texCoord");
+	//std::cout << "Val is " << texc << "\n";
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void *)(6 * sizeof(GLfloat)));
 }
 
 VertexArrayConfig::~VertexArrayConfig() {
