@@ -7,6 +7,7 @@
 /.factorypath
 /.idea/
 /.clwb/
+/cmake-build-debug/
 /.ijwb/
 /build
 /.vs
