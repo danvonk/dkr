@@ -6,8 +6,8 @@
 #define DANKERER_MESH_H
 
 #include "common.h"
-#include "vertexBuffer.h"
-#include "elementBuffer.h"
+#include "opengl/vertexBuffer.h"
+#include "opengl/elementBuffer.h"
 #include "material.h"
 
 #include <assimp/Importer.hpp>
@@ -18,7 +18,7 @@
 
 namespace dk {
     namespace gfx {
-        class Renderer;
+        class Device;
         class CommandBuffer;
 
         struct MeshComponent {
@@ -40,14 +40,14 @@ namespace dk {
             StaticMesh();
             ~StaticMesh() = default;
 
-            void loadFromFile(std::string const &fileName, Renderer& rend);
+            void loadFromFile(std::string const &fileName, Device& rend);
             void use();
 
             void render(CommandBuffer* buffer);
 
             u64 getVertCount();
 
-            MaterialHandle loadMaterial(aiMaterial* mat, Renderer& rend);
+            MaterialHandle loadMaterial(aiMaterial* mat, Device& rend);
             void evaluateStack(std::unique_ptr<Material> mat, aiScene* pScene);
 
             std::vector<MeshComponent> m_subMeshes;

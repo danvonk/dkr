@@ -6,11 +6,11 @@
 #define DANKERER_MATERIAL_H
 
 #include "common.h"
-#include "texture.h"
+#include "opengl/texture.h"
 
 namespace dk {
     namespace gfx {
-        class Renderer;
+        class Device;
         enum class IlluminationModel {
             ConstantColour,
             LambertDiffuse,
@@ -19,7 +19,7 @@ namespace dk {
 
         class Material {
         public:
-            Material(Renderer* rend);
+            Material(Device* rend);
             ~Material();
 
             //set shaders, uniforms, textures...
@@ -51,7 +51,7 @@ namespace dk {
             const glm::vec3 &getSpecularColour() const;
             void setSpecularColour(const glm::vec3 &specularColour);
 
-            void addTexture(std::string fileName, TextureType tt, Renderer* rend);
+            void addTexture(std::string fileName, TextureType tt, Device* rend);
 
 
             template <typename H>
@@ -74,7 +74,7 @@ namespace dk {
             ShaderProgramHandle m_shp;
             std::vector<ShaderHandle> m_shaders;
 
-            Renderer* m_renderer;
+            Device* m_renderer;
         };
     }
 }

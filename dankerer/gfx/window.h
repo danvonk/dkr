@@ -43,7 +43,7 @@ namespace dk {
             int m_height;
             bool m_vsync;
 
-            std::unique_ptr<Renderer> m_renderer;
+            std::unique_ptr<Device> m_renderer;
             std::unique_ptr<Camera> m_camera;
             std::unique_ptr<StaticMesh> m_mesh;
             std::unique_ptr<CommandBuffer> m_cmdBuf;

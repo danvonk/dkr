@@ -7,7 +7,7 @@
 
 using namespace dk::gfx;
 
-Material::Material(Renderer *rend)
+Material::Material(Device *rend)
  : m_renderer(rend)
 {
     m_shp = rend->createShaderProgram();
@@ -90,7 +90,7 @@ void Material::bind() {
     }
 }
 
-void Material::addTexture(std::string fileName, TextureType tt, Renderer* rend) {
+void Material::addTexture(std::string fileName, TextureType tt, Device* rend) {
     std::replace(fileName.begin(), fileName.end(), '\\', '/');
     //auto relPath = absl::StrCat("dankerer/resources" ,fileName);
 	auto relPath = "dankerer/resources" + fileName;

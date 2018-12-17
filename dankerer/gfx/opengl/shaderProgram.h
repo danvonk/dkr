@@ -6,20 +6,20 @@
 #define DANKERER_SHADERPROGRAM_H
 
 #include "common.h"
-#include "gfx/shader.h"
+#include "opengl/shader.h"
 
 
 namespace dk {
     namespace gfx {
         class Shader;
-        class Renderer;
+        class Device;
         class ShaderProgram {
         public:
             ShaderProgram();
             ~ShaderProgram();
 
-            void addShader(ShaderHandle shader, Renderer* rend);
-            bool link(Renderer* rend);
+            void addShader(ShaderHandle shader, Device* rend);
+            bool link(Device* rend);
 
             void setUniform(GLuint bindingPoint, int value);
 

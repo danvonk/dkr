@@ -4,14 +4,14 @@
 
 #include "window.h"
 
-#include "vertexBuffer.h"
-#include "shader.h"
-#include "shaderProgram.h"
-#include "uniformBuffer.h"
-#include "texture.h"
+#include "opengl/vertexBuffer.h"
+#include "opengl/shader.h"
+#include "opengl/shaderProgram.h"
+#include "opengl/uniformBuffer.h"
+#include "opengl/texture.h"
 
 using dk::gfx::Window;
-using dk::gfx::Renderer;
+using dk::gfx::Device;
 using dk::gfx::Texture;
 using dk::gfx::Camera;
 using dk::gfx::StaticMesh;
@@ -20,7 +20,7 @@ Window::Window(GLFWwindow* window, int width, int height)
     : m_window(window)
     , m_width(width)
     , m_height(height)
-    , m_renderer(new Renderer(m_width, m_height))
+    , m_renderer(new Device(m_width, m_height))
     , m_camera(new Camera(m_width, m_height))
     , m_cmdBuf(new CommandBuffer())
 {

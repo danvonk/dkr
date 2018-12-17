@@ -16,7 +16,7 @@ using namespace dk::gfx;
 StaticMesh::StaticMesh() {
 }
 
-void StaticMesh::loadFromFile(std::string const &fileName, Renderer& rend) {
+void StaticMesh::loadFromFile(std::string const &fileName, Device& rend) {
     //ask renderer to create necessary gfx objects
     m_vbo = rend.createVertexBuffer();
     m_ebo = rend.createElementBuffer();
@@ -120,7 +120,7 @@ u64 StaticMesh::getVertCount() {
     return m_vertCount;
 }
 
-MaterialHandle StaticMesh::loadMaterial(aiMaterial *mat, Renderer& rend) {
+MaterialHandle StaticMesh::loadMaterial(aiMaterial *mat, Device& rend) {
     auto matHandle = rend.createMaterial();
     auto& gameMat = rend.accessMaterial(matHandle);
 

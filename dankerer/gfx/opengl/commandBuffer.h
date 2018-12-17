@@ -13,7 +13,7 @@
 namespace dk {
     namespace gfx {
         class CommandBuffer {
-            friend class Renderer;
+            friend class Device;
         public:
             CommandBuffer() = default;
             ~CommandBuffer() = default;
