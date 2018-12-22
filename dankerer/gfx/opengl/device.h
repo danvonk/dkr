@@ -18,7 +18,7 @@
 #include "opengl/shaderProgram.h"
 #include "opengl/texture.h"
 #include "opengl/uniformBuffer.h"
-#include "commandBuffer.h"
+#include "renderQueue.h"
 #include "vertexArrayConfig.h"
 #include "opengl/framebuffer.h"
 
@@ -35,7 +35,7 @@ namespace dk {
             void setWindowHeight(int h);
             int getWindowHeight();
 
-            void submit(CommandBuffer* buf);
+            void submit(RenderQueue* buf);
             void clear();
 
             VertexBufferHandle createVertexBuffer();

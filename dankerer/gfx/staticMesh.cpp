@@ -2,16 +2,21 @@
 // Created by dan on 27/10/18.
 //
 #include <boost/filesystem.hpp>
-#include <unordered_map>
+
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/hash.hpp>
 
 #include "staticMesh.h"
 #include "renderer.h"
-#include "commandBuffer.h"
 
 
 using namespace dk::gfx;
+
+namespace renderFunctions {
+    void renderStaticMesh(RenderQueue *q, const RenderQueueItem *d, u32 instances) {
+
+    }
+}
 
 StaticMesh::StaticMesh() {
 }
@@ -113,9 +118,6 @@ void StaticMesh::loadFromFile(std::string const &fileName, Device& rend) {
     rend.accessVertexBuffer(m_vbo).bind(reinterpret_cast<float *>(&m_vertices[0]), m_vertices.size() * sizeof(GLfloat) * 8);
 }
 
-void StaticMesh::use() {
-}
-
 u64 StaticMesh::getVertCount() {
     return m_vertCount;
 }
@@ -198,20 +200,4 @@ void StaticMesh::evaluateStack(std::unique_ptr<Material> mat, aiScene *pScene) {
 //    for (auto i = 0; i < pScene->mNumTextures; i++) {
 //
 //    }
-}
-
-void StaticMesh::render(CommandBuffer *buffer) {
-    for (const auto& mesh : m_subMeshes) {
-        DrawIndexed draw;
-        draw.m_eleBuffer = mesh.m_ebo;
-        draw.m_vertexBuffer = mesh.m_vbo;
-
-        draw.m_baseVertex = mesh.m_startVertex;
-        draw.m_startIndex = mesh.m_startVertex;
-
-        draw.m_indexCount = mesh.m_elementCount;
-        draw.m_vertexCount = mesh.m_vertexCount;
-
-        buffer->addDrawCommand(generateMaterialKey(mesh.m_material), draw);
-    }
 }

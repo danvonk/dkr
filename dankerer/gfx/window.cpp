@@ -9,6 +9,7 @@
 #include "opengl/shaderProgram.h"
 #include "opengl/uniformBuffer.h"
 #include "opengl/texture.h"
+#include "camera.h"
 
 using dk::gfx::Window;
 using dk::gfx::Device;
@@ -16,18 +17,18 @@ using dk::gfx::Texture;
 using dk::gfx::Camera;
 using dk::gfx::StaticMesh;
 
-Window::Window(GLFWwindow* window, int width, int height)
+Window::Window(GLFWwindow* window, int width, int height, std::string const& cfgFilePath, std::string const& sceneFilePath)
     : m_window(window)
     , m_width(width)
     , m_height(height)
-    , m_renderer(new Device(m_width, m_height))
-    , m_camera(new Camera(m_width, m_height))
-    , m_cmdBuf(new CommandBuffer())
+    , m_device(new Device(width, height))
+    , m_camera(m_width, m_height)
+    , m_forwardRenderer(Renderer::RendererType::Forward, m_device)
+    , m_deferredRenderer(Renderer::RendererType::Deferred, m_device)
 {
 }
 
 Window::~Window() {
-    m_renderer->deleteUniformBuffer(m_ubo);
 }
 
 void Window::setTitle(std::string const &title) {

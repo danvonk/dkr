@@ -15,7 +15,7 @@ namespace dk {
         class Device;
         class ShaderProgram {
         public:
-            ShaderProgram();
+            ShaderProgram(Device* d);
             ~ShaderProgram();
 
             void addShader(ShaderHandle shader, Device* rend);
@@ -28,6 +28,7 @@ namespace dk {
             }
 
         private:
+            Device* m_device;
             GLuint m_shp;
 
         };

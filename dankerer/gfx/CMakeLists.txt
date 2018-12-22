@@ -1,8 +1,6 @@
 add_library(Graphics STATIC
 camera.cpp
 camera.h
-opengl/commandBuffer.cpp
-opengl/commandBuffer.h
 common.h
 opengl/elementBuffer.cpp
 opengl/elementBuffer.h
@@ -14,8 +12,6 @@ opengl/device.cpp
 opengl/device.h
 opengl/shader.cpp
 opengl/shader.h
-shaderPass.h
-shaderPass.cpp
 opengl/shaderProgram.cpp
 opengl/shaderProgram.h
 staticMesh.cpp
@@ -38,7 +34,10 @@ opengl/vertexBuffer.cpp
 opengl/vertexBuffer.h
 window.cpp
 window.h
-)
+renderQueue.cpp
+renderQueue.h
+aabb.cpp
+aabb.h)
 
 target_include_directories(Graphics PUBLIC
 ${CMAKE_SOURCE_DIR}/dankerer

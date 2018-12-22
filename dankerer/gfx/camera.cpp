@@ -11,28 +11,22 @@
 
 using dk::gfx::Camera;
 
-Camera::Camera()
-    : m_position(glm::vec3(0.0f, 0.0f, 3.0f))
+Camera::Camera(int width, int height)
+    : m_windowWidth(width)
+    , m_windowHeight(height)
+    , m_position(glm::vec3(0.0f, 0.0f, 3.0f))
     , m_target(glm::vec3(0.0f, 0.0f, 0.0f))
     , m_up(glm::vec3(0.0f, 1.0f, 0.0f))
     , m_front(glm::vec3(0.0f, 0.0f, -1.0f))
-
     , m_cameraDirection(glm::normalize(m_position - m_target))
     , m_cameraRight(glm::normalize(glm::cross(m_up, m_cameraDirection)))
     , m_cameraUp(glm::cross(m_cameraDirection, m_cameraRight))
-
     , m_pitch(0.0f)
     , m_yaw(0.0f)
 {
     m_lastMouse = glm::vec2(m_windowWidth / 2, m_windowHeight / 2);
 }
 
-Camera::Camera(int width, int height)
-: Camera()
-{
-    m_windowHeight = height;
-    m_windowWidth = width;
-}
 
 void Camera::mouse(double x, double y) {
     static bool firstMouse = true;

@@ -10,9 +10,9 @@ using dk::gfx::Device;
 using dk::gfx::ShaderProgram;
 using dk::gfx::Shader;
 
-ShaderProgram::ShaderProgram() {
+ShaderProgram::ShaderProgram(Device* d) {
+    m_device = d;
     m_shp = glCreateProgram();
-
 }
 
 ShaderProgram::~ShaderProgram() {

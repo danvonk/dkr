@@ -176,7 +176,7 @@ ShaderProgramHandle Device::createShaderProgram() {
         auto &shp = m_shaderPrograms[i];
         if (!shp.first) {
             //free spot
-            shp.first = new ShaderProgram();
+            shp.first = new ShaderProgram(this);
             h.m_index = i;
             h.m_generation = shp.second;
 
@@ -276,24 +276,11 @@ void Device::deleteMaterial(MaterialHandle h) {
     delete m_materials[h.m_index].first;
 }
 
-void Device::submit(CommandBuffer *buf) {
-    buf->sort();
-    for (const auto &el : buf->m_commands) {
-		u64 key = std::get<0>(el);
-		const DrawIndexed& d = std::get<1>(el);
+void Device::submit(RenderQueue *buf) {
 
-        //set material
-        MaterialHandle h;
-        h.m_index = static_cast<u32>(key);
-        h.m_generation = 0; //assume it's 0, no checks
-        accessMaterial(h).bind();
-		
-		glDrawElements(GL_TRIANGLES, d.m_vertexCount, GL_UNSIGNED_INT, (void*)(d.m_startIndex * 3 * sizeof(u32)));
-	}
-    buf->clear();
 }
 
-VertexArrayConfig &Renderer::getVertexArrayConfig() {
+VertexArrayConfig &Device::getVertexArrayConfig() {
     return m_vaoConfig;
 }
 
