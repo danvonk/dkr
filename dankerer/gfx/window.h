@@ -17,7 +17,7 @@ namespace dk {
     namespace gfx {
         class Window {
         public:
-            Window(GLFWwindow* window, int width, int height, std::string const& cfgFilePath, std::string const& sceneFilePath);
+            Window(GLFWwindow* window, int width, int height, std::string const& cfgFilePath);
             ~Window();
 
             void setTitle(std::string const& title);
@@ -39,6 +39,7 @@ namespace dk {
                 bool m_hdrBloom = false;
                 bool m_showUI = false;
                 bool m_ssao = false;
+                bool m_vsync = false;
             } m_configFile;
 
             void readConfigFile(std::string const& path);
@@ -49,7 +50,6 @@ namespace dk {
 
             int m_width;
             int m_height;
-            bool m_vsync;
 
             Renderer m_forwardRenderer;
             Renderer m_deferredRenderer;

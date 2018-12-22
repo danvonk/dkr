@@ -21,6 +21,7 @@ namespace dk {
             ~RenderPass();
 
         private:
+            std::string m_nameOfPass;
             Device* m_device;
         };
     }

@@ -68,12 +68,13 @@ namespace dk {
             ~StaticMesh() = default;
 
             void loadFromFile(std::string const &fileName, Device& rend);
-            void fillRendererInfo(StaticMeshInfo& mi);
 
             u64 getVertCount();
 
             MaterialHandle loadMaterial(aiMaterial* mat, Device& rend);
             void evaluateStack(std::unique_ptr<Material> mat, aiScene* pScene);
+
+            void addToQueue(RenderQueue& q) const;
 
         private:
             std::vector<MeshComponent> m_subMeshes;

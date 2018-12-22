@@ -49,7 +49,7 @@ int main() {
     glfwWindowHint(GLFW_DEPTH_BITS, 24);
     glfwWindowHint(GLFW_STENCIL_BITS, 8);
 
-    Window gameWindow(window, 800, 600);
+    Window gameWindow(window, 800, 600, "config.json");
 
     glfwSetWindowUserPointer(window, (void*)&gameWindow);
     auto keybFunc = [](GLFWwindow* window, int key, int scanCode, int actions, int mods) {

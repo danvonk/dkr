@@ -14,7 +14,12 @@ using namespace dk::gfx;
 
 namespace renderFunctions {
     void renderStaticMesh(RenderQueue *q, const RenderQueueItem *d, u32 instances) {
-
+        StaticMeshInfo* info = static_cast<StaticMeshInfo*>(d->m_renderInfo);
+        if (info->m_ebo) {
+            q->drawElements(info->m_vertexCount, info->m_startIndex);
+        } else {
+            q->draw(info->m_baseVertex, info->m_vertexCount);
+        }
     }
 }
 
@@ -190,6 +195,10 @@ MaterialHandle StaticMesh::loadMaterial(aiMaterial *mat, Device& rend) {
     }
 
     return matHandle;
+}
+
+void StaticMesh::addToQueue(RenderQueue& q) const {
+
 }
 
 

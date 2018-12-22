@@ -19,7 +19,7 @@ namespace dk {
             //function ptr handles how to draw the object
             RendererFunc m_rendererFunction;
             //extra data needed to draw the object
-            const void* m_renderInfo;
+            void* m_renderInfo;
             //sort key
             u32 m_sortKey;
         };
@@ -27,7 +27,7 @@ namespace dk {
         class RenderQueue {
         public:
             explicit RenderQueue(Device* d);
-            ~RenderQueue();
+            ~RenderQueue() = default;
 
             void sort();
             void reset();
@@ -38,6 +38,10 @@ namespace dk {
             void setShaderProgram(ShaderProgram* p);
 
             void push();
+
+
+            void draw(u32 startVertex, u32 count);
+            void drawElements(u32 vertexCount, u32 indexOffset);
 
         private:
             Device* m_device;

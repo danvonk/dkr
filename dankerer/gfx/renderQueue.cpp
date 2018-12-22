@@ -11,3 +11,11 @@ RenderQueue::RenderQueue(Device *d)
 {
 
 }
+
+void RenderQueue::draw(u32 startVertex, u32 count) {
+    glDrawArrays(GL_TRIANGLES, startVertex, count);
+}
+
+void RenderQueue::drawElements(u32 vertexCount, u32 indexOffset) {
+    glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, (void*)indexOffset);
+}

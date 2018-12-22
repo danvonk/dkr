@@ -26,7 +26,6 @@ namespace dk {
             void left();
             void right();
 
-
             glm::mat4 getProj();
             glm::mat4 getView();
 

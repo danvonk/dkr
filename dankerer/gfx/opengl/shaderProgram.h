@@ -15,7 +15,7 @@ namespace dk {
         class Device;
         class ShaderProgram {
         public:
-            ShaderProgram(Device* d);
+            explicit ShaderProgram(Device* d);
             ~ShaderProgram();
 
             void addShader(ShaderHandle shader, Device* rend);
