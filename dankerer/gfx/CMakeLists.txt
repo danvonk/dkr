@@ -1,4 +1,6 @@
 add_library(Graphics STATIC
+aabb.h
+aabb.cpp
 camera.cpp
 camera.h
 common.h
@@ -28,16 +30,14 @@ opengl/texture.cpp
 opengl/texture.h
 opengl/uniformBuffer.cpp
 opengl/uniformBuffer.h
-        vertexArrayLayout.cpp
-        vertexArrayLayout.h
+vertexArrayLayout.cpp
+vertexArrayLayout.h
 opengl/vertexBuffer.cpp
 opengl/vertexBuffer.h
 window.cpp
 window.h
-        commandBuffer.cpp
-        commandBuffer.h
-aabb.cpp
-aabb.h)
+commandBuffer.cpp
+commandBuffer.h)
 
 target_include_directories(Graphics PUBLIC
 ${CMAKE_SOURCE_DIR}/dankerer
@@ -47,14 +47,13 @@ ${CMAKE_SOURCE_DIR}/third_party/glm
 ${CMAKE_SOURCE_DIR}/third_party/assimp/include
 ${CMAKE_SOURCE_DIR}/third_party/rapidjson/include
 ${CMAKE_SOURCE_DIR}/third_party/glfw/include
-${CMAKE_SOURCE_DIR}/third_party/entt/src
 ${GLEW_INCLUDE_DIRS}
 ${Boost_INCLUDE_DIRS}
 ${OPENGL_INCLUDE_DIR}
 )
 
 target_link_libraries(Graphics 
-glfw 
+glfw
 ${GLEW_LIBRARIES} 
 Boost::filesystem
 assimp

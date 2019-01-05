@@ -34,8 +34,6 @@ void VertexArrayLayout::addAttribute(int index, int numComponents, GLenum type) 
     m_entries.push_back(entry);
 }
 
-int VertexArrayLayout::getHash() {
-}
 
 void VertexArrayLayout::bindAttribute() {
     glBindVertexArray(m_vao);

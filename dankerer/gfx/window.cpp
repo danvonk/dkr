@@ -3,6 +3,7 @@
 //
 
 #include "window.h"
+#include "renderPass.h"
 
 using namespace dk::gfx;
 
@@ -59,7 +60,7 @@ void Window::init() {
         //configure
     } else if (m_configFile.m_rendType == Renderer::RendererType::Deferred) {
         //add the passes...
-        auto gbuf = std::make_unique<RenderPass>(m_device);
+		RenderPass* gbuf = new RenderPass(m_device.get());
         gbuf->setName("gpass");
         gbuf->setClearColour(glm::vec4(0.0f, 0.0f, 0.1f, 0.0f));
 
@@ -68,16 +69,16 @@ void Window::init() {
         gbuf->addOutput("albedo");
         gbuf->addOutput("specular");
 
-        m_deferredRenderer.addRenderPass(std::move(gbuf));
 
-        auto lighting = std::make_unique<RenderPass>(m_device);
+		RenderPass* lighting = new RenderPass(m_device.get());
 
         lighting->addInput("position");
         lighting->addInput("normals");
         lighting->addInput("albedo");
         lighting->addInput("specular");
 
-        m_deferredRenderer.addRenderPass(std::move(lighting));
+		m_deferredRenderer.addRenderPass(gbuf);
+		m_deferredRenderer.addRenderPass(lighting);
     }
 }
 

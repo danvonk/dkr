@@ -9,6 +9,6 @@ Renderer::Renderer(dk::gfx::Renderer::RendererType t, Device* d)
 {
 }
 
-RenderPass* Renderer::addRenderPass(std::unique_ptr<RenderPass> p) {
-    m_renderPasses.push_back(std::move(p));
+void Renderer::addRenderPass(RenderPass* p) {
+	m_renderPasses.emplace_back(std::unique_ptr<RenderPass>(p));
 }

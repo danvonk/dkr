@@ -6,6 +6,7 @@
 #define DKR_RENDERPASS_H
 
 #include "common.h"
+#include "texture.h"
 #include <functional>
 
 namespace dk {
@@ -28,7 +29,8 @@ namespace dk {
         class RenderPass {
         public:
             explicit RenderPass(Device* d);
-            ~RenderPass();
+			~RenderPass() = default;
+			RenderPass(RenderPass&&) = default;
 
             void setName(std::string const& name);
             std::string getName() const;

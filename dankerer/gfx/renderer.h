@@ -21,11 +21,12 @@ namespace dk {
 				return &m_cmdBuf;
 			}
 
-			RenderPass* addRenderPass(std::unique_ptr<RenderPass> p);
+			void addRenderPass(RenderPass* p);
 		private:
 			Device* m_device;
 			RendererType m_rendererType;
 			CommandBuffer m_cmdBuf;
+
 			std::vector<std::unique_ptr<RenderPass>> m_renderPasses;
 
 			glm::mat4 m_view;

@@ -6,11 +6,8 @@
 #define DANKERER_MESH_H
 
 #include "common.h"
-#include "opengl/vertexBuffer.h"
-#include "opengl/elementBuffer.h"
-#include "opengl/shaderProgram.h"
-#include "material.h"
-#include "commandBuffer.h"
+#include "aabb.h"
+#include "device.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -20,13 +17,9 @@
 
 namespace dk {
     namespace gfx {
-        class Device;
+		class CommandBuffer;
+		struct RenderQueueItem;
 
-        class AABB {
-        public:
-            AABB() = default;
-            ~AABB() = default;
-        };
 
         //mesh fills out this struct and is passed along with the
         //RendererFunc to the CommandBuffer
@@ -74,9 +67,9 @@ namespace dk {
             u64 getVertCount();
 
             MaterialHandle loadMaterial(aiMaterial* mat, Device& rend);
-            void evaluateStack(std::unique_ptr<Material> mat, aiScene* pScene);
-
-            void addToQueue(CommandBuffer& q) const;
+            
+			/*void evaluateStack(std::unique_ptr<Material> mat, aiScene* pScene);
+            void addToQueue(CommandBuffer& q) const;*/
 
         private:
             std::vector<MeshComponent> m_subMeshes;

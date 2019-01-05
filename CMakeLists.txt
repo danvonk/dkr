@@ -32,6 +32,7 @@ find_package(Boost REQUIRED COMPONENTS filesystem)
 find_package(OpenGL REQUIRED)
 
 add_subdirectory(third_party/assimp)
+add_subdirectory(third_party/entt)
 add_subdirectory(third_party/rapidjson)
 add_subdirectory(third_party/glfw)
 

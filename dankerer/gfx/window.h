@@ -59,9 +59,7 @@ namespace dk {
 
             Camera m_camera;
 
-            SceneLoader m_sceneLoader;
-
-            GLuint m_vao; //temp
+			SceneLoader m_sceneLoader;
 
             UniformBufferHandle m_ubo;
         };

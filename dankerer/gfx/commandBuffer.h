@@ -11,11 +11,12 @@
 
 namespace dk {
     namespace gfx {
-        class CommandBuffer;
         class Device;
         class RenderPass;
         class ElementBuffer;
-        class RenderQueueItem;
+    
+		class CommandBuffer;
+		struct RenderQueueItem;
         using RendererFunc = void (*)(CommandBuffer*, const RenderQueueItem*, u32);
 
         struct RenderQueueItem {

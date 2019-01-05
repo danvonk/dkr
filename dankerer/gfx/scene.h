@@ -1,7 +1,6 @@
 #pragma once
 
 #include "common.h"
-#include "entt/entity/registry.hpp"
 #include "staticMesh.h"
 
 namespace dk {
@@ -22,7 +21,7 @@ namespace dk {
 			~Scene() = default;
 
 		private:
-		    entt::DefaultRegistry m_registry;
+		    //entt::registry<u32> m_registry;
 		    std::unique_ptr<StaticMesh> m_testMesh; //just for now, till glTF loader is done
 		};
 	}

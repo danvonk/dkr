@@ -7,7 +7,10 @@
 #include <glm/gtx/hash.hpp>
 
 #include "staticMesh.h"
-#include "renderer.h"
+
+#include "device.h"
+#include "commandBuffer.h"
+#include "material.h"
 
 
 using namespace dk::gfx;
@@ -219,18 +222,4 @@ MaterialHandle StaticMesh::loadMaterial(aiMaterial *mat, Device& rend) {
     }
 
     return matHandle;
-}
-
-void StaticMesh::addToQueue(CommandBuffer& q) const {
-
-}
-
-
-void StaticMesh::evaluateStack(std::unique_ptr<Material> mat, aiScene *pScene) {
-//    auto stackItem = pScene->mTextures[0];
-//
-//    aiVector3D base = pScene->
-//    for (auto i = 0; i < pScene->mNumTextures; i++) {
-//
-//    }
 }
