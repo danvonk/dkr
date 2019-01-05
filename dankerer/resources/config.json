@@ -1,0 +1,4 @@
+{
+    "renderer_type" : "deferred",
+    "ssao" : false
+}

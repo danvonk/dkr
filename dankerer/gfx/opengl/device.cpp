@@ -202,7 +202,7 @@ FramebufferHandle Device::createFramebuffer() {
         auto &fb = m_framebuffers[i];
         if (!fb.first) {
             //free spot
-            fb.first = new Framebuffer();
+            fb.first = new Framebuffer(this);
             h.m_index = i;
             h.m_generation = fb.second;
 
@@ -276,11 +276,37 @@ void Device::deleteMaterial(MaterialHandle h) {
     delete m_materials[h.m_index].first;
 }
 
-void Device::submit(RenderQueue *buf) {
+VertexLayoutHandle Device::createVertexLayout(){
+    VertexLayoutHandle h;
 
+    for (auto i = 0u; i < m_layouts.size(); i++) {
+        auto &mat = m_layouts[i];
+        if (!mat.first) {
+            //free spot
+            mat.first = new VertexArrayLayout(this);
+            h.m_index = i;
+            h.m_generation = mat.second;
+
+            return h;
+        }
+    }
 }
 
-VertexArrayConfig &Device::getVertexArrayConfig() {
-    return m_vaoConfig;
+VertexArrayLayout& Device::accessVetrexLayout(VertexLayoutHandle h){
+    if (h.m_generation != m_layouts[h.m_index].second) {
+        std::cerr << "Handle has gen " << h.m_generation << " but renderer has gen " << m_layouts[h.m_index].second << '\n';
+    }
+    assert(h.m_generation == m_layouts[h.m_index].second);
+    return *(m_layouts[h.m_index].first);
+}
+
+void Device::deleteVertexLayout(VertexLayoutHandle h){
+    m_layouts[h.m_index].second++;
+    delete m_layouts[h.m_index].first;
+}
+
+
+void Device::submit(CommandBuffer *buf) {
+
 }
 

@@ -13,8 +13,27 @@
 using namespace dk::gfx;
 
 namespace renderFunctions {
-    void renderStaticMesh(RenderQueue *q, const RenderQueueItem *d, u32 instances) {
-        StaticMeshInfo* info = static_cast<StaticMeshInfo*>(d->m_renderInfo);
+    void setMeshState(CommandBuffer* q, const RenderQueueItem* d) {
+        const StaticMeshInfo* info = static_cast<StaticMeshInfo*>(d->m_renderInfo);
+
+        q->setShaderProgram(info->m_shp);
+
+        glBindVertexArray(info->m_vao);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), nullptr);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
+
+        if (info->m_ebo) {
+            q->setElementBuffer(info->m_ebo);
+        }
+    }
+
+    void renderStaticMesh(CommandBuffer *q, const RenderQueueItem *d, u32 instances) {
+        const StaticMeshInfo *info = static_cast<StaticMeshInfo *>(d->m_renderInfo);
+        setMeshState(q, d);
+
+        q->setShaderProgram(info->m_shp);
+
         if (info->m_ebo) {
             q->drawElements(info->m_vertexCount, info->m_startIndex);
         } else {
@@ -24,6 +43,11 @@ namespace renderFunctions {
 }
 
 StaticMesh::StaticMesh() {
+    glGenVertexArrays(1, &m_vao);
+}
+
+StaticMesh::~StaticMesh() {
+    glDeleteVertexArrays(1, &m_vao);
 }
 
 void StaticMesh::loadFromFile(std::string const &fileName, Device& rend) {
@@ -31,8 +55,8 @@ void StaticMesh::loadFromFile(std::string const &fileName, Device& rend) {
     m_vbo = rend.createVertexBuffer();
     m_ebo = rend.createElementBuffer();
 
-    m_vert = rend.createShader(GL_VERTEX_SHADER, "C:/Users/dan/dev/dkr/dankerer/resources/sh1.vert");
-    m_frag = rend.createShader(GL_FRAGMENT_SHADER, "C:/Users/dan/dev/dkr/dankerer/resources/sh1.frag");
+    m_vert = rend.createShader(GL_VERTEX_SHADER, "/home/dan/dev/dankerer/dankerer/resources/sh1.vert");
+    m_frag = rend.createShader(GL_FRAGMENT_SHADER, "/home/dan/dev/dankerer/dankerer/resources/sh1.frag");
 
     Assimp::Importer importer;
     const aiScene *pScene = importer.ReadFile(fileName.c_str(), aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_FlipUVs);
@@ -197,7 +221,7 @@ MaterialHandle StaticMesh::loadMaterial(aiMaterial *mat, Device& rend) {
     return matHandle;
 }
 
-void StaticMesh::addToQueue(RenderQueue& q) const {
+void StaticMesh::addToQueue(CommandBuffer& q) const {
 
 }
 

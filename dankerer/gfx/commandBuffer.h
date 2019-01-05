@@ -7,13 +7,16 @@
 
 #include "common.h"
 #include "opengl/shaderProgram.h"
+#include "renderPass.h"
 
 namespace dk {
     namespace gfx {
-        class RenderQueue;
+        class CommandBuffer;
         class Device;
+        class RenderPass;
+        class ElementBuffer;
         class RenderQueueItem;
-        using RendererFunc = void (*)(RenderQueue*, const RenderQueueItem*, u32);
+        using RendererFunc = void (*)(CommandBuffer*, const RenderQueueItem*, u32);
 
         struct RenderQueueItem {
             //function ptr handles how to draw the object
@@ -24,21 +27,28 @@ namespace dk {
             u32 m_sortKey;
         };
 
-        class RenderQueue {
+        class CommandBuffer {
         public:
-            explicit RenderQueue(Device* d);
-            ~RenderQueue() = default;
+            explicit CommandBuffer(Device* d);
+            ~CommandBuffer() = default;
 
             void sort();
+            void execute();
             void reset();
 
             void beginRenderPass();
             void endRenderPass();
 
             void setShaderProgram(ShaderProgram* p);
+            void setVao(GLuint vao);
+            void setElementBuffer(ElementBuffer* e);
 
+            template <typename T>
             void push();
 
+            Device* getDevice() {
+                return m_device;
+            }
 
             void draw(u32 startVertex, u32 count);
             void drawElements(u32 vertexCount, u32 indexOffset);
@@ -46,6 +56,9 @@ namespace dk {
         private:
             Device* m_device;
             ShaderProgram* m_currentShp;
+
+            RenderPass* m_currentRenderPass;
+
             std::vector<RenderQueueItem> m_queueItems;
         };
     }

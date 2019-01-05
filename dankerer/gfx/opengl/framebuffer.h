@@ -6,12 +6,27 @@
 #define DANKERER_FRAMEBUFFER_H
 
 #include "common.h"
+
 namespace dk {
     namespace gfx {
+        class Device;
+        class Texture;
         class Framebuffer {
         public:
-            Framebuffer() = default;
-            ~Framebuffer() = default;
+            explicit Framebuffer(Device* d);
+            ~Framebuffer();
+
+            void attachColourTexture(Texture* t);
+            void bind();
+
+        private:
+            Device* m_device;
+
+            std::vector<Texture*> m_colourAttachments;
+            Texture* m_depthAttachment;
+            Texture* m_stencilAttachment;
+
+            GLuint m_fbo;
         };
     }
 }

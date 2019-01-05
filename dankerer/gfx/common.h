@@ -43,6 +43,7 @@ using ShaderProgramHandle = GenericHandle<u32, 12, 20>;
 using FramebufferHandle = GenericHandle<u32, 12, 20>;
 using TextureHandle = GenericHandle<u32, 12, 20>;
 using MaterialHandle = GenericHandle<u32, 12, 20>;
+using VertexLayoutHandle = GenericHandle<u32, 12, 20>;
 
 
 //default vertex structure

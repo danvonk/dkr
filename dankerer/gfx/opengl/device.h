@@ -12,15 +12,15 @@
 #include <array>
 #include <optional>
 
-#include "opengl/vertexBuffer.h"
-#include "opengl/elementBuffer.h"
-#include "opengl/shader.h"
-#include "opengl/shaderProgram.h"
-#include "opengl/texture.h"
-#include "opengl/uniformBuffer.h"
-#include "renderQueue.h"
-#include "vertexArrayConfig.h"
-#include "opengl/framebuffer.h"
+#include "vertexBuffer.h"
+#include "elementBuffer.h"
+#include "shader.h"
+#include "shaderProgram.h"
+#include "texture.h"
+#include "uniformBuffer.h"
+#include "commandBuffer.h"
+#include "vertexArrayLayout.h"
+#include "framebuffer.h"
 
 namespace dk {
     namespace gfx {
@@ -35,7 +35,7 @@ namespace dk {
             void setWindowHeight(int h);
             int getWindowHeight();
 
-            void submit(RenderQueue* buf);
+            void submit(CommandBuffer* buf);
             void clear();
 
             VertexBufferHandle createVertexBuffer();
@@ -72,17 +72,19 @@ namespace dk {
             Material& accessMaterial(MaterialHandle h);
             void deleteMaterial(MaterialHandle h);
 
-            VertexArrayConfig& getVertexArrayConfig();
+            VertexLayoutHandle createVertexLayout();
+            VertexArrayLayout& accessVetrexLayout(VertexLayoutHandle h);
+            void deleteVertexLayout(VertexLayoutHandle h);
+
 
         private:
             std::string m_deviceVendor;
             std::string m_deviceRenderer;
             std::string m_deviceVersion;
 
-            VertexArrayConfig m_vaoConfig;
-
             //probably switch from standard new to an arena allocator
             std::array<std::pair<VertexBuffer*, u32>, 4096> m_vertexBuffers;
+            std::array<std::pair<VertexArrayLayout*, u32>, 4096> m_layouts;
             std::array<std::pair<ElementBuffer*, u32>, 4096> m_eleBuffers;
             std::array<std::pair<UniformBuffer*, u32>, 4096> m_uniformBuffers;
             std::array<std::pair<Shader*, u32>, 4096> m_shaders;

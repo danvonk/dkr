@@ -2,7 +2,8 @@
 
 #include "scene.h"
 #include "opengl/device.h"
-#include "renderQueue.h"
+#include "commandBuffer.h"
+#include "renderPass.h"
 
 namespace dk {
 	namespace gfx {
@@ -16,14 +17,19 @@ namespace dk {
 			Renderer(RendererType t, Device* d);
 			~Renderer() = default;
 
-			void begin();
-			void pushToRenderQueue();
-			void flush();
+			CommandBuffer* getCommandBuffer() {
+				return &m_cmdBuf;
+			}
 
+			RenderPass* addRenderPass(std::unique_ptr<RenderPass> p);
 		private:
 			Device* m_device;
 			RendererType m_rendererType;
-			RenderQueue m_rendQueue;
+			CommandBuffer m_cmdBuf;
+			std::vector<std::unique_ptr<RenderPass>> m_renderPasses;
+
+			glm::mat4 m_view;
+			glm::mat4 m_proj;
 		};
 	}
 }

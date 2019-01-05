@@ -10,7 +10,7 @@
 #include "opengl/elementBuffer.h"
 #include "opengl/shaderProgram.h"
 #include "material.h"
-#include "renderQueue.h"
+#include "commandBuffer.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -29,11 +29,12 @@ namespace dk {
         };
 
         //mesh fills out this struct and is passed along with the
-        //RendererFunc to the RenderQueue
+        //RendererFunc to the CommandBuffer
         struct StaticMeshInfo {
             VertexBuffer* m_vbo;
-            ElementBuffer*  m_ebo;
+            ElementBuffer* m_ebo;
             ShaderProgram* m_shp;
+            GLuint m_vao;
 
             u32 m_indexCount;
             u32 m_vertexCount;
@@ -43,7 +44,8 @@ namespace dk {
         };
 
         namespace renderFunctions {
-            void renderStaticMesh(RenderQueue* q, const RenderQueueItem* d, u32 instances);
+            void renderStaticMesh(CommandBuffer* q, const RenderQueueItem* d, u32 instances);
+            void setMeshState(CommandBuffer* q, const RenderQueueItem* d);
         }
 
         struct MeshComponent {
@@ -65,7 +67,7 @@ namespace dk {
         class StaticMesh {
         public:
             StaticMesh();
-            ~StaticMesh() = default;
+            ~StaticMesh();
 
             void loadFromFile(std::string const &fileName, Device& rend);
 
@@ -74,12 +76,13 @@ namespace dk {
             MaterialHandle loadMaterial(aiMaterial* mat, Device& rend);
             void evaluateStack(std::unique_ptr<Material> mat, aiScene* pScene);
 
-            void addToQueue(RenderQueue& q) const;
+            void addToQueue(CommandBuffer& q) const;
 
         private:
             std::vector<MeshComponent> m_subMeshes;
             //considering this mesh is static, one vbo/ebo per mesh
             //is probably enough...
+            GLuint m_vao; //TODO: wasteful and not portable
             VertexBufferHandle m_vbo;
             ElementBufferHandle m_ebo;
 

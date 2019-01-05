@@ -28,20 +28,21 @@ opengl/texture.cpp
 opengl/texture.h
 opengl/uniformBuffer.cpp
 opengl/uniformBuffer.h
-vertexArrayConfig.cpp
-vertexArrayConfig.h
+        vertexArrayLayout.cpp
+        vertexArrayLayout.h
 opengl/vertexBuffer.cpp
 opengl/vertexBuffer.h
 window.cpp
 window.h
-renderQueue.cpp
-renderQueue.h
+        commandBuffer.cpp
+        commandBuffer.h
 aabb.cpp
 aabb.h)
 
 target_include_directories(Graphics PUBLIC
 ${CMAKE_SOURCE_DIR}/dankerer
 ${CMAKE_SOURCE_DIR}/dankerer/gfx
+${CMAKE_SOURCE_DIR}/dankerer/gfx/opengl
 ${CMAKE_SOURCE_DIR}/third_party/glm
 ${CMAKE_SOURCE_DIR}/third_party/assimp/include
 ${CMAKE_SOURCE_DIR}/third_party/rapidjson/include

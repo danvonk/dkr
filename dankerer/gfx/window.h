@@ -18,12 +18,15 @@ namespace dk {
         class Window {
         public:
             Window(GLFWwindow* window, int width, int height, std::string const& cfgFilePath);
-            ~Window();
+            ~Window() = default;
 
             void setTitle(std::string const& title);
 
             void init();
             void update(float deltaTime);
+
+            void renderMainPass(CommandBuffer& buf);
+
 
             //only used for GLFW
             void handleKeyboard(GLFWwindow* window, int key, int scanCode, int actions, int mods);

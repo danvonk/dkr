@@ -24,6 +24,9 @@ namespace dk {
             void loadImageWithType(std::string const& fileName, TextureType tt);
 
             void bind(u32 samplerUnit = 0);
+            GLuint getID() {
+                return m_tex;
+            }
         private:
             GLuint m_tex;
             TextureType m_ttype;

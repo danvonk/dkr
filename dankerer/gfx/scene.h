@@ -11,6 +11,11 @@ namespace dk {
 			StaticMesh* m_mesh;
 		};
 
+		struct PhysicalObjectComponent {
+			glm::vec3 m_position;
+			float m_velocity;
+		};
+
 		class Scene {
 		public:
 		    Scene();
