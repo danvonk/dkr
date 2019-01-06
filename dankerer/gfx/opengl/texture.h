@@ -22,6 +22,7 @@ namespace dk {
 
             void loadImage(std::string const& fileName);
             void loadImageWithType(std::string const& fileName, TextureType tt);
+			void loadWithBlankImage(int width, int height);
 
             void bind(u32 samplerUnit = 0);
             GLuint getID() {

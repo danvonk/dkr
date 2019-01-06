@@ -27,7 +27,8 @@ void Framebuffer::bind() {
 
 void Framebuffer::addColourAttachment(Texture *t) {
     bind();
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_TEXTURE0 + m_colourAttachments.size(), GL_TEXTURE_2D, t->getID(), 0);
+	t->loadWithBlankImage(m_screenWidth, m_screenHeight);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + m_colourAttachments.size(), GL_TEXTURE_2D, t->getID(), 0);
     m_colourAttachments.push_back(t);
 }
 

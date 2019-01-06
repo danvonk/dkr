@@ -4,6 +4,7 @@
 
 #include "commandBuffer.h"
 #include "opengl/elementBuffer.h"
+#include "renderPass.h"
 
 using namespace dk::gfx;
 
@@ -34,8 +35,12 @@ void CommandBuffer::setElementBuffer(ElementBuffer *e) {
     e->bind();
 }
 
-void dk::gfx::CommandBuffer::push(u64 sortKey, RendererFunc rendFunc, StaticMeshInfo smi)
-{
+void dk::gfx::CommandBuffer::push(u64 sortKey, RendererFunc rendFunc, StaticMeshInfo smi) {
+	RenderQueueItem i{};
+	i.m_rendererFunction = rendFunc;
+	i.m_renderInfo = smi;
+	i.m_sortKey = sortKey;
+	m_queueItems.push_back(i);
 }
 
 void CommandBuffer::sort() {
@@ -50,13 +55,12 @@ void CommandBuffer::beginRenderPass(RenderPass* rp) {
 	rp->bind();
 }
 
+void CommandBuffer::endRenderPass() {
+	//TODO: Reset the render pass settings to default.
+}
+
 void CommandBuffer::execute(){
     for (auto i : m_queueItems) {
         i.m_rendererFunction(this, &i, 1); //call the render function, all states are set in the func
     }
-}
-
-template<typename T>
-void CommandBuffer::push() {
-
 }

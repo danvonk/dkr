@@ -29,7 +29,7 @@ namespace dk {
         class RenderPass {
         public:
             explicit RenderPass(Device* d);
-			~RenderPass() = default;
+			~RenderPass();
 			RenderPass(RenderPass&&) = default;
 
             void setName(std::string const& name);

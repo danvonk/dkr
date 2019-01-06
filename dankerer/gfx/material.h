@@ -11,6 +11,8 @@
 namespace dk {
     namespace gfx {
         class Device;
+		class ShaderProgram;
+
         enum class IlluminationModel {
             ConstantColour,
             LambertDiffuse,

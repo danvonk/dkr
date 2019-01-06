@@ -23,8 +23,19 @@ namespace dk {
 
             void bind();
 
+			void setScreenWidth(int w) {
+				m_screenWidth = w;
+			}
+
+			void setScreenHeight(int h) {
+				m_screenHeight = h;
+			}
+
         private:
             Device* m_device;
+
+			int m_screenWidth;
+			int m_screenHeight;
 
             std::vector<Texture*> m_colourAttachments;
             Texture* m_depthAttachment;

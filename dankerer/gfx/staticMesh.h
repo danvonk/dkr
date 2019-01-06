@@ -7,19 +7,24 @@
 
 #include "common.h"
 #include "aabb.h"
-#include "device.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/cimport.h>
 #include <assimp/postprocess.h>
 
+#include "device.h"
+#include "vertexBuffer.h"
+#include "elementBuffer.h"
+#include "shaderProgram.h"
+
+
+
 
 namespace dk {
     namespace gfx {
 		class CommandBuffer;
 		struct RenderQueueItem;
-
 
         //mesh fills out this struct and is passed along with the
         //RendererFunc to the CommandBuffer
@@ -36,10 +41,6 @@ namespace dk {
             u32 m_startVertex;
         };
 
-        namespace renderFunctions {
-            void renderStaticMesh(CommandBuffer* q, const RenderQueueItem* d, u32 instances);
-            void setMeshState(CommandBuffer* q, const RenderQueueItem* d);
-        }
 
         struct MeshComponent {
             VertexBufferHandle m_vbo;
@@ -57,6 +58,9 @@ namespace dk {
             AABB m_boundingBox;
         };
 
+		void setMeshState(CommandBuffer* q, const RenderQueueItem* d);
+		void renderStaticMesh(CommandBuffer* q, const RenderQueueItem* d, u32 instances);
+
         class StaticMesh {
         public:
             StaticMesh();
@@ -68,7 +72,7 @@ namespace dk {
 
             MaterialHandle loadMaterial(aiMaterial* mat, Device& rend);
 
-			void addToBuffer(CommandBuffer& q, Device& d);
+			void addToBuffer(CommandBuffer* q, Device* d);
             
 			/*void evaluateStack(std::unique_ptr<Material> mat, aiScene* pScene);
             void addToQueue(CommandBuffer& q) const;*/

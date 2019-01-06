@@ -6,13 +6,11 @@
 #define DKR_RENDERQUEUE_H
 
 #include "common.h"
-#include "opengl/shaderProgram.h"
-#include "renderPass.h"
+#include "device.h"
 #include "staticMesh.h"
 
 namespace dk {
     namespace gfx {
-        class Device;
         class RenderPass;
         class ElementBuffer;
     
@@ -24,7 +22,7 @@ namespace dk {
             //function ptr handles how to draw the object
             RendererFunc m_rendererFunction;
             //extra data needed to draw the object
-            void* m_renderInfo;
+            StaticMeshInfo m_renderInfo;
             //sort key
             u32 m_sortKey;
         };

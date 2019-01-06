@@ -18,12 +18,13 @@
 #include "shaderProgram.h"
 #include "texture.h"
 #include "uniformBuffer.h"
-#include "commandBuffer.h"
 #include "vertexArrayLayout.h"
 #include "framebuffer.h"
 
 namespace dk {
     namespace gfx {
+		class CommandBuffer;
+
         class Device {
         public:
             Device(int width, int height);

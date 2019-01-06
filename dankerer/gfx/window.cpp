@@ -47,7 +47,22 @@ void Window::handleMouse(GLFWwindow* window, double xpos, double ypos) {
 }
 
 void Window::init() {
-    m_ubo = m_device->createUniformBuffer();
+	m_sceneLoader.getScene()->getMesh()->loadFromFile("C:/Users/dan/dev/dkr/dankerer/resources/chalet.obj", *(m_device.get()));
+
+	auto gvert = m_device->createShader(GL_VERTEX_SHADER);
+	auto& gvshader = m_device->accessShader(gvert);
+	gvshader.compile("C:/Users/dan/dev/dkr/dankerer/resources/gbuf.vert");
+
+	auto gfrag = m_device->createShader(GL_FRAGMENT_SHADER);
+	auto& gfshader = m_device->accessShader(gfrag);
+	gfshader.compile("C:/Users/dan/dev/dkr/dankerer/resources/gbuf.frag");
+
+	auto gprog = m_device->createShaderProgram();
+	auto gfvprog = m_device->accessShaderProgram(gprog);
+	gfvprog.addShader(gvert, m_device.get());
+	gfvprog.addShader(gfrag, m_device.get());
+
+	m_ubo = m_device->createUniformBuffer();
     CameraMatrix cameraMatrix{};
     cameraMatrix.proj = m_camera.getProj();
     cameraMatrix.view = m_camera.getView();
@@ -55,6 +70,8 @@ void Window::init() {
     auto& ubuf = m_device->accessUniformBuffer(m_ubo);
     ubuf.bind((void*)&cameraMatrix, sizeof(cameraMatrix));
     ubuf.connectToShader(0);
+
+
 
     if (m_configFile.m_rendType == Renderer::RendererType::Forward) {
         //configure
@@ -69,17 +86,23 @@ void Window::init() {
         gbuf->addOutput("albedo");
         gbuf->addOutput("specular");
 
-		RenderPass* lighting = new RenderPass(m_device.get());
-		lighting->setName("lighting");
+		//RenderPass* lighting = new RenderPass(m_device.get());
+		//lighting->setName("lighting");
 
-        lighting->addInput("position");
-        lighting->addInput("normals");
-        lighting->addInput("albedo");
-        lighting->addInput("specular");
+  //      lighting->addInput("position");
+  //      lighting->addInput("normals");
+  //      lighting->addInput("albedo");
+  //      lighting->addInput("specular");
 
 		m_deferredRenderer.addRenderPass(gbuf);
-		m_deferredRenderer.addRenderPass(lighting);
+		//m_deferredRenderer.addRenderPass(lighting);
 
+		CommandBuffer* cmd = m_deferredRenderer.getCommandBuffer();
+		cmd->beginRenderPass(gbuf);
+		m_sceneLoader.getScene()->getMesh()->addToBuffer(cmd, m_device.get());
+		cmd->setShaderProgram(&gfvprog);
+		cmd->execute();
+		cmd->endRenderPass();
     }
 }
 
