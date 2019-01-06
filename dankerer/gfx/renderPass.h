@@ -40,8 +40,6 @@ namespace dk {
             void setClearColour(glm::vec4 colour);
 
             void bind();
-
-
         private:
             std::string m_nameOfPass;
             glm::vec3 m_clearColour;

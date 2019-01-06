@@ -15,6 +15,7 @@ namespace dk {
             ~VertexBuffer();
 
             void bind(float* vertices, unsigned long count);
+			void bind();
 
         private:
             GLuint m_id;

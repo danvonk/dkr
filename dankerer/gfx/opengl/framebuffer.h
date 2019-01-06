@@ -16,7 +16,11 @@ namespace dk {
             explicit Framebuffer(Device* d);
             ~Framebuffer();
 
-            void attachColourTexture(Texture* t);
+            void addColourAttachment(Texture* t);
+			void addDepthAttachment(Texture* t);
+			void addStencilAttachment(Texture* t);
+			void clearAttachments();
+
             void bind();
 
         private:

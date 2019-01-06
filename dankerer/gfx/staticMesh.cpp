@@ -29,6 +29,7 @@ namespace renderFunctions {
         if (info->m_ebo) {
             q->setElementBuffer(info->m_ebo);
         }
+		info->m_vbo->bind();
     }
 
     void renderStaticMesh(CommandBuffer *q, const RenderQueueItem *d, u32 instances) {
@@ -38,9 +39,9 @@ namespace renderFunctions {
         q->setShaderProgram(info->m_shp);
 
         if (info->m_ebo) {
-            q->drawElements(info->m_vertexCount, info->m_startIndex);
+            q->drawElements(info->m_vertexCount, info->m_startElement);
         } else {
-            q->draw(info->m_baseVertex, info->m_vertexCount);
+            q->draw(info->m_startVertex, info->m_vertexCount);
         }
     }
 }
@@ -222,4 +223,21 @@ MaterialHandle StaticMesh::loadMaterial(aiMaterial *mat, Device& rend) {
     }
 
     return matHandle;
+}
+
+void StaticMesh::addToBuffer(CommandBuffer & q, Device& d) {
+	for (const auto& subMesh : m_subMeshes) {
+		StaticMeshInfo meshInfo{};
+		meshInfo.m_startVertex = subMesh.m_startVertex;
+		meshInfo.m_ebo = &(d.accessElementBuffer(subMesh.m_ebo));
+		meshInfo.m_elementCount = subMesh.m_elementCount;
+		meshInfo.m_shp = d.accessMaterial(subMesh.m_material).getShaderProgram();
+		meshInfo.m_startElement = subMesh.m_startElement;
+		meshInfo.m_vao = m_vao;
+		meshInfo.m_vbo = &(d.accessVertexBuffer(m_vbo));
+		meshInfo.m_vertexCount = subMesh.m_vertexCount;
+
+
+		q.push(0, renderFunctions::renderStaticMesh, meshInfo);
+	}
 }

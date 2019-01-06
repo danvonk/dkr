@@ -34,12 +34,20 @@ void CommandBuffer::setElementBuffer(ElementBuffer *e) {
     e->bind();
 }
 
+void dk::gfx::CommandBuffer::push(u64 sortKey, RendererFunc rendFunc, StaticMeshInfo smi)
+{
+}
+
 void CommandBuffer::sort() {
 
 }
 
 void CommandBuffer::reset() {
     m_queueItems.clear();
+}
+
+void CommandBuffer::beginRenderPass(RenderPass* rp) {
+	rp->bind();
 }
 
 void CommandBuffer::execute(){

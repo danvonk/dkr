@@ -53,6 +53,7 @@ namespace dk {
 
             void addTexture(std::string fileName, TextureType tt, Device* rend);
 
+			ShaderProgram* getShaderProgram();
 
             template <typename H>
             friend H AbslHashValue(H h, const Material& m) {

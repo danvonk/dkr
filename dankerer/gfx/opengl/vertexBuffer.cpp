@@ -21,4 +21,9 @@ void VertexBuffer::bind(float *vertices, unsigned long count) {
     glBindBuffer(GL_ARRAY_BUFFER, m_id);
 }
 
+void VertexBuffer::bind()
+{
+	glBindBuffer(GL_ARRAY_BUFFER, m_id);
+}
+
 

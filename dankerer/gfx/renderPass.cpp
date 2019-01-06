@@ -31,7 +31,7 @@ void RenderPass::addOutput(std::string const &name) {
     auto& fbo = m_device->accessFramebuffer(m_frame);
 
 	auto tex = m_device->createTexture();
-	fbo.attachColourTexture(&(m_device->accessTexture(tex)));
+	fbo.addColourAttachment(&(m_device->accessTexture(tex)));
 }
 
 void RenderPass::setClearColour(glm::vec4 colour) {

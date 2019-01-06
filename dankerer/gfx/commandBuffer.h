@@ -8,6 +8,7 @@
 #include "common.h"
 #include "opengl/shaderProgram.h"
 #include "renderPass.h"
+#include "staticMesh.h"
 
 namespace dk {
     namespace gfx {
@@ -37,15 +38,14 @@ namespace dk {
             void execute();
             void reset();
 
-            void beginRenderPass();
+            void beginRenderPass(RenderPass* rp);
             void endRenderPass();
 
             void setShaderProgram(ShaderProgram* p);
             void setVao(GLuint vao);
             void setElementBuffer(ElementBuffer* e);
 
-            template <typename T>
-            void push();
+			void push(u64 sortKey, RendererFunc rendFunc, StaticMeshInfo smi);
 
             Device* getDevice() {
                 return m_device;

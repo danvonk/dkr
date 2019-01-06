@@ -69,8 +69,8 @@ void Window::init() {
         gbuf->addOutput("albedo");
         gbuf->addOutput("specular");
 
-
 		RenderPass* lighting = new RenderPass(m_device.get());
+		lighting->setName("lighting");
 
         lighting->addInput("position");
         lighting->addInput("normals");
@@ -79,6 +79,7 @@ void Window::init() {
 
 		m_deferredRenderer.addRenderPass(gbuf);
 		m_deferredRenderer.addRenderPass(lighting);
+
     }
 }
 

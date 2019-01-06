@@ -25,9 +25,17 @@ void Framebuffer::bind() {
     }
 }
 
-void Framebuffer::attachColourTexture(Texture *t) {
+void Framebuffer::addColourAttachment(Texture *t) {
     bind();
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_TEXTURE0 + m_colourAttachments.size(), GL_TEXTURE_2D, t->getID(), 0);
     m_colourAttachments.push_back(t);
+}
 
+void Framebuffer::addDepthAttachment(Texture * t) {
+	bind();
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, t->getID(), 0);
+}
+
+void Framebuffer::addStencilAttachment(Texture * t)
+{
 }

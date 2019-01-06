@@ -29,11 +29,11 @@ namespace dk {
             ShaderProgram* m_shp;
             GLuint m_vao;
 
-            u32 m_indexCount;
+            u32 m_elementCount;
             u32 m_vertexCount;
 
-            u32 m_startIndex;
-            u32 m_baseVertex;
+            u32 m_startElement;
+            u32 m_startVertex;
         };
 
         namespace renderFunctions {
@@ -53,7 +53,7 @@ namespace dk {
 
             std::vector<u32> m_indices;
             MaterialHandle m_material;
-
+			
             AABB m_boundingBox;
         };
 
@@ -67,6 +67,8 @@ namespace dk {
             u64 getVertCount();
 
             MaterialHandle loadMaterial(aiMaterial* mat, Device& rend);
+
+			void addToBuffer(CommandBuffer& q, Device& d);
             
 			/*void evaluateStack(std::unique_ptr<Material> mat, aiScene* pScene);
             void addToQueue(CommandBuffer& q) const;*/

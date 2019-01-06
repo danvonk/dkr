@@ -100,6 +100,11 @@ void Material::addTexture(std::string fileName, TextureType tt, Device* rend) {
     m_textures.push_back(txHandle);
 }
 
+ShaderProgram* Material::getShaderProgram()
+{
+	return &(m_renderer->accessShaderProgram(m_shp));
+}
+
 void Material::addShader(ShaderHandle sh) {
     m_shaders.push_back(sh);
     m_renderer->accessShader(sh).compile();

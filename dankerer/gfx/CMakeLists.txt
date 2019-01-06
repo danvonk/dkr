@@ -19,6 +19,8 @@ opengl/shaderProgram.h
 staticMesh.cpp
 staticMesh.h
 renderPass.h
+lights.h
+deferredLights.h
 scene.h
 scene.cpp
 sceneLoader.h

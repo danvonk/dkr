@@ -20,6 +20,11 @@ namespace dk {
 		    Scene();
 			~Scene() = default;
 
+			//TODO: Temp!
+			StaticMesh* getMesh() {
+				return m_testMesh.get();
+			}
+
 		private:
 		    //entt::registry<u32> m_registry;
 		    std::unique_ptr<StaticMesh> m_testMesh; //just for now, till glTF loader is done
