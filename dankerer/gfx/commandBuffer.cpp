@@ -47,7 +47,7 @@ void CommandBuffer::sort() {
 
 }
 
-void CommandBuffer::reset() {
+void CommandBuffer::flush() {
     m_queueItems.clear();
 }
 
@@ -60,6 +60,7 @@ void CommandBuffer::endRenderPass() {
 }
 
 void CommandBuffer::execute(){
+	m_device->clear();
     for (auto i : m_queueItems) {
         i.m_rendererFunction(this, &i, 1); //call the render function, all states are set in the func
     }

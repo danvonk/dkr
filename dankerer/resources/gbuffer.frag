@@ -6,7 +6,7 @@ in vec2 Texcoord;
 
 out vec3 gPosition;
 out vec3 gNormal;
-out vec3 gAlbedoSpecular;
+out vec4 gAlbedoSpecular;
 
 uniform sampler2D textureDiffuse;
 uniform sampler2D textureSpecular;

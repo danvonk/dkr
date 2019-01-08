@@ -62,6 +62,7 @@ namespace dk {
 			SceneLoader m_sceneLoader;
 
             UniformBufferHandle m_ubo;
+			RenderPass* m_gbuf;
         };
     }
 }

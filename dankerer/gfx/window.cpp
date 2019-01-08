@@ -51,11 +51,11 @@ void Window::init() {
 
 	auto gvert = m_device->createShader(GL_VERTEX_SHADER);
 	auto& gvshader = m_device->accessShader(gvert);
-	gvshader.compile("C:/Users/dan/dev/dkr/dankerer/resources/gbuf.vert");
+	gvshader.compile("C:/Users/dan/dev/dkr/dankerer/resources/gbuffer.vert");
 
 	auto gfrag = m_device->createShader(GL_FRAGMENT_SHADER);
 	auto& gfshader = m_device->accessShader(gfrag);
-	gfshader.compile("C:/Users/dan/dev/dkr/dankerer/resources/gbuf.frag");
+	gfshader.compile("C:/Users/dan/dev/dkr/dankerer/resources/gbuffer.frag");
 
 	auto gprog = m_device->createShaderProgram();
 	auto gfvprog = m_device->accessShaderProgram(gprog);
@@ -67,24 +67,18 @@ void Window::init() {
     cameraMatrix.proj = m_camera.getProj();
     cameraMatrix.view = m_camera.getView();
 
-    auto& ubuf = m_device->accessUniformBuffer(m_ubo);
-    ubuf.bind((void*)&cameraMatrix, sizeof(cameraMatrix));
-    ubuf.connectToShader(0);
-
-
-
     if (m_configFile.m_rendType == Renderer::RendererType::Forward) {
         //configure
     } else if (m_configFile.m_rendType == Renderer::RendererType::Deferred) {
         //add the passes...
-		RenderPass* gbuf = new RenderPass(m_device.get());
-        gbuf->setName("gpass");
-        gbuf->setClearColour(glm::vec4(0.0f, 0.0f, 0.1f, 0.0f));
+		m_gbuf = new RenderPass(m_device.get());
+		m_gbuf->setName("gpass");
+		m_gbuf->setClearColour(glm::vec4(0.0f, 0.0f, 0.1f, 0.0f));
 
-        gbuf->addOutput("position");
-        gbuf->addOutput("normals");
-        gbuf->addOutput("albedo");
-        gbuf->addOutput("specular");
+		m_gbuf->addOutput("position");
+		m_gbuf->addOutput("normals");
+		m_gbuf->addOutput("albedo");
+		m_gbuf->addOutput("specular");
 
 		//RenderPass* lighting = new RenderPass(m_device.get());
 		//lighting->setName("lighting");
@@ -94,15 +88,22 @@ void Window::init() {
   //      lighting->addInput("albedo");
   //      lighting->addInput("specular");
 
-		m_deferredRenderer.addRenderPass(gbuf);
+		m_deferredRenderer.addRenderPass(m_gbuf);
 		//m_deferredRenderer.addRenderPass(lighting);
 
 		CommandBuffer* cmd = m_deferredRenderer.getCommandBuffer();
-		cmd->beginRenderPass(gbuf);
+		cmd->beginRenderPass(m_gbuf);
 		m_sceneLoader.getScene()->getMesh()->addToBuffer(cmd, m_device.get());
 		cmd->setShaderProgram(&gfvprog);
+
+		auto& ubuf = m_device->accessUniformBuffer(m_ubo);
+		ubuf.bind((void*)&cameraMatrix, sizeof(cameraMatrix));
+		ubuf.connectToShader(3);
+
 		cmd->execute();
+		
 		cmd->endRenderPass();
+		cmd->flush();
     }
 }
 
@@ -111,5 +112,19 @@ void Window::update(float deltaTime) {
     cameraMatrix.proj = m_camera.getProj();
     cameraMatrix.view = m_camera.getView();
     m_device->accessUniformBuffer(m_ubo).bind((void*)&cameraMatrix, sizeof(cameraMatrix));
+
+	CommandBuffer* cmd = m_deferredRenderer.getCommandBuffer();
+	cmd->beginRenderPass(m_gbuf);
+	m_sceneLoader.getScene()->getMesh()->addToBuffer(cmd, m_device.get());
+	//cmd->setShaderProgram(&gfvprog);
+
+	auto& ubuf = m_device->accessUniformBuffer(m_ubo);
+	ubuf.bind((void*)&cameraMatrix, sizeof(cameraMatrix));
+	ubuf.connectToShader(3);
+
+	cmd->execute();
+
+	cmd->endRenderPass();
+	cmd->flush();
 
 }

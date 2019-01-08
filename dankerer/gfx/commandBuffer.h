@@ -34,7 +34,7 @@ namespace dk {
 
             void sort();
             void execute();
-            void reset();
+            void flush();
 
             void beginRenderPass(RenderPass* rp);
             void endRenderPass();

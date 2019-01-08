@@ -19,9 +19,6 @@ namespace dk {
 	namespace gfx {
 		void setMeshState(CommandBuffer* q, const RenderQueueItem* d) {
 			//const StaticMeshInfo* info = static_cast<StaticMeshInfo*>(d->m_renderInfo);
-
-			q->setShaderProgram(d->m_renderInfo.m_shp);
-
 			glBindVertexArray(d->m_renderInfo.m_vao);
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), nullptr);
 			glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
@@ -37,7 +34,7 @@ namespace dk {
 			//const StaticMeshInfo *info = static_cast<StaticMeshInfo *>(d->m_renderInfo);
 			setMeshState(q, d);
 
-			q->setShaderProgram(d->m_renderInfo.m_shp);
+			//q->setShaderProgram(d->m_renderInfo.m_shp);
 
 			if (d->m_renderInfo.m_ebo) {
 				q->drawElements(d->m_renderInfo.m_vertexCount, d->m_renderInfo.m_startElement);
@@ -64,8 +61,8 @@ void StaticMesh::loadFromFile(std::string const &fileName, Device& rend) {
     m_vbo = rend.createVertexBuffer();
     m_ebo = rend.createElementBuffer();
 
-    m_vert = rend.createShader(GL_VERTEX_SHADER, "/home/dan/dev/dankerer/dankerer/resources/sh1.vert");
-    m_frag = rend.createShader(GL_FRAGMENT_SHADER, "/home/dan/dev/dankerer/dankerer/resources/sh1.frag");
+    m_vert = rend.createShader(GL_VERTEX_SHADER, "C:/Users/dan/dev/dkr/dankerer/resources/sh1.vert");
+    m_frag = rend.createShader(GL_FRAGMENT_SHADER, "C:/Users/dan/dev/dkr/dankerer/resources/sh1.frag");
 
     Assimp::Importer importer;
     const aiScene *pScene = importer.ReadFile(fileName.c_str(), aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_FlipUVs);
